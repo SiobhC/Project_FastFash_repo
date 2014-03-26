@@ -1,0 +1,5 @@
+<!--#include virtual="top.html"-->	
+
+<img id="shoeImage" src="shoes.jpg" alt="Shoes Image" />
+
+<!--#include virtual="bottom.html"-->	

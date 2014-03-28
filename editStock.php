@@ -82,8 +82,11 @@ if ($mysqli->connect_errno) {
 $mysqli->real_query("SELECT id, name,price,stock,image,description FROM products ORDER BY id ASC");
 $res = $mysqli->use_result();
 echo '<form action="editStock.php" method="post">';
+
+echo "<br><br>";
 echo "The items currently in stock are:...";
 echo "<table border=1><tr><td>Name</td><td>Price</td><td>Units in Stock</td><td>Image</td><td>Description</td><td>Delete</td><td>Edit</td><td>Add</td></tr>";
+echo "<br><br>";
 while ($row = $res->fetch_assoc()) {
     echo "<tr><td>{$row['name']}</td>";
     echo "<td>&#8364;{$row['price']}</td>" ;
@@ -93,12 +96,11 @@ while ($row = $res->fetch_assoc()) {
 	//echo "<td><input type=button value='delete' onClick='deleteStock({$row['id']});'> </td>";
 	echo "<td><a href='editNewStock.php?pass=hello&action=delete&id={$row['id']}'>Delete</a></td>";
 	echo "<td><a href='editNewStock.php?pass=hello&action=edit&id={$row['id']}'>Edit</a></td>";
-	echo "<td><a href='addStock.php?pass=hello&action=add&id={$row['id']}'>Add</a></td>";
-	//echo "<td><input type=button value='update' onClick='updateStock({$row['id']});'> </td></tr>";
+	echo "<td><a href='addingStock.php?pass=hello&action=add&id={$row['id']}'>Add</a></td></tr>";
+
     
 }
 echo "</table>";
-
 
 
 /* close connection */

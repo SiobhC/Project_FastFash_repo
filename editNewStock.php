@@ -25,16 +25,17 @@ if(isset($_POST['action'])){
 		
 		$mysqli->real_query("UPDATE products SET name='{$_POST['name']}',name='{$_POST['name']}',price='{$_POST['price']}',stock='{$_POST['stock']}',description='{$_POST['description']}' WHERE id={$_POST['id']};");
 			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/editStock.php?pass=hello");
-}
+			}
 
 }
+
+
 else if($_GET['action']=="delete") {
 		
 		$mysqli->real_query("DELETE FROM products WHERE id={$_GET['id']};");
 		header("Location: http://danu6.it.nuigalway.ie/siobhancollins/editStock.php?pass=hello");
 		
-	
-}else if($_GET['action']=="edit") {
+	}else if($_GET['action']=="edit") {
 		
 		$mysqli->real_query("SELECT * FROM products where id={$_GET['id']};");
 $res = $mysqli->use_result();

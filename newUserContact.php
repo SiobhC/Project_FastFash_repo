@@ -306,121 +306,45 @@ mysqli_close($link);
 
 
 <fieldset>
-	<legend>Please fill in your Username and Password:</legend>
-
+<legend>Please fill in your Username and Password:</legend>
 <form name="contactform" method="post" action="" <?php echo $_SERVER["PHP_SELF"];?>">
-
 <table width="450px">
 
 
 <tr>
-
- <td valign="top">
-
-  <label for="firstname">First Name *</label>
-
- </td>
-
- <td valign="top">
-
-  <input  type="text" name="firstname" maxlength="50" size="30">
-
- </td>
-
+<td valign="top"><label for="firstname">First Name *</label></td>
+<td valign="top"><input  type="text" name="firstname" maxlength="50" size="30"></td>
 </tr>
 
 <tr>
-
- <td valign="top"">
-
-  <label for="lastname">Last Name *</label>
-
- </td>
-
- <td valign="top">
-
-  <input  type="text" name="lastname" maxlength="50" size="30">
-
- </td>
-
+<td valign="top""><label for="lastname">Last Name *</label></td>
+<td valign="top"><input  type="text" name="lastname" maxlength="50" size="30"></td>
 </tr>
 
 
 <tr>
-
- <td valign="top">
-
-  <label for="username">UserName *</label>
-
- </td>
-
- <td valign="top">
-
-  <input  type="text" name="username" maxlength="50" size="30">
-
- </td>
-
-</tr>
-<tr>
-
- <td valign="top">
-
-  <label for="pass">Password *</label>
-
- </td>
-
- <td valign="top">
-
-  <input  type="text" name="pass" maxlength="50" size="30">
-
- </td>
-
+<td valign="top"><label for="username">UserName *</label></td>
+<td valign="top"><input  type="text" name="username" maxlength="50" size="30"></td>
 </tr>
 
 <tr>
+<td valign="top"><label for="pass">Password *</label></td>
+<td valign="top"><input  type="text" name="pass" maxlength="50" size="30"></td>
+</tr>
 
- <td valign="top">
-
-  <label for="email">Email Address *</label>
-
- </td>
-
- <td valign="top">
-
-  <input  type="text" name="email" maxlength="80" size="30">
-
- </td>
-
+<tr>
+<td valign="top"><label for="email">Email Address *</label></td>
+<td valign="top"><input  type="text" name="email" maxlength="80" size="30"></td>
 </tr>
 
 
 <tr>
-
- <td valign="top">
-
-  <label for="about">About *</label>
-
- </td>
-
- <td valign="top">
-
-  <textarea  name="about" maxlength="500" cols="25"
-  rows="6"></textarea>
-
- </td>
-
+<td valign="top"><label for="about">About *</label></td>
+<td valign="top"><textarea  name="about" maxlength="500" cols="25" rows="6"></textarea></td>
 </tr>
 
-
-
 <tr>
-
- <td colspan="2" style="text-align:center">
-
- <a href=""> <input type="submit" id="submit" value="Submit"></a>
-
- </td>
-
+<td colspan="2" style="text-align:center"><a href=""> <input type="submit" id="submit" value="Submit"></a></td>
 </tr>
 
 </form>

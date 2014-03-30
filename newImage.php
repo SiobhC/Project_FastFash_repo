@@ -1,3 +1,4 @@
+//Now adding an image to the database
 <html>
 <head></head>
 <body>

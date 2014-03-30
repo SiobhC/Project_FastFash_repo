@@ -96,7 +96,7 @@ while ($row = $res->fetch_assoc()) {
 	//echo "<td><input type=button value='delete' onClick='deleteStock({$row['id']});'> </td>";
 	echo "<td><a href='editNewStock.php?pass=hello&action=delete&id={$row['id']}'>Delete</a></td>";
 	echo "<td><a href='editNewStock.php?pass=hello&action=edit&id={$row['id']}'>Edit</a></td>";
-	echo "<td><a href='addingStock.php?pass=hello&action=add&id={$row['id']}'>Add</a></td></tr>";
+	echo "<td><a href='addNewStock.php?id={$row['id']}'>Add</a></td></tr>";
 
     
 }

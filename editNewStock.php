@@ -1,3 +1,4 @@
+
 <?php 
 
 /* Selects the customers message from the database and prints to the screen */
@@ -23,7 +24,7 @@ else if (!(isset($_GET['id'])) &&  !(isset($_POST['id']))  )
 if(isset($_POST['action'])){
 	if ($_POST['action']=="update") {
 		
-		$mysqli->real_query("UPDATE products SET name='{$_POST['name']}',name='{$_POST['name']}',price='{$_POST['price']}',stock='{$_POST['stock']}',description='{$_POST['description']}' WHERE id={$_POST['id']};");
+		$mysqli->real_query("UPDATE products SET name='{$_POST['name']}',name='{$_POST['name']}', price='{$_POST['price']}',stock='{$_POST['stock']}',description='{$_POST['description']}' WHERE id={$_POST['id']};");
 			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/editStock.php?pass=hello");
 			}
 
@@ -51,7 +52,7 @@ while ($row = $res->fetch_assoc()) {
 	echo "<td><input type='text' name='price' value='{$row['price']}'>";
     echo "<input type='hidden' name='id' value='{$_GET['id']}'>";
     echo "<input type='hidden' name='action' value='update'></td>";
-	
+
 	
 	echo "<td><input type='text' name='stock' value='{$row['stock']}'";
     echo "<input type='hidden' name='id' value='{$_GET['id']}'>";

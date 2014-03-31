@@ -2,7 +2,7 @@
 <html>
 <head></head>
 <body>
-//Now adding an image to the database
+
 <?php
 $link = mysqli_connect("danu6.it.nuigalway.ie", "mydb1396cs", "da1sus", "mydb1396");
 if (isset($_POST['name'])) {

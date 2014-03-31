@@ -157,25 +157,32 @@ if ($mysqli->connect_errno) {
 
 $mysqli->real_query("SELECT id, name,image,description FROM closet ORDER BY id ASC");
 $res = $mysqli->use_result();
-echo '<form action="editCloset.php" method="post">';
+
+
+
+echo '<form action="ClosetTest.php" method="post">';
+
 echo "The items currently in your closet are:...";
-echo "<table border=0><tr><td>Name</td><td>Image</td><td>Description</td><td>Delete</td><td>Edit</td><td>Add</td></tr>";
+
+
+echo "<ul data-role='listview' data-filter='true' data-filter-placeholder='Search closet...' data-inset='true'>";
 while ($row = $res->fetch_assoc()) {
-    echo "<tr><td>{$row['name']}</td>";
-    echo "<td><img class='thumbnail' src={$row['image']} width='200' height='150' /></td>" ;
-    echo "<td>{$row['description']}</td>" ;
-	//echo "<td><input type=button value='delete' onClick='deleteStock({$row['id']});'> </td>";
-	echo "<td><a rel='external' href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-role='button' data-icon='delete'>Delete</a></td>";
-	echo "<td><a rel='external' href='editCloset.php?pass=hello&action=edit&id={$row['id']}' data-role='button' data-icon='plus'>Edit</a></td>";
-  	echo "<td><a rel='external' href='addNewCloset.php' data-role='button' data-icon='plus' data-theme='b'>Add</a></td></tr>";
+	
+echo '<li><h3>'.$row['name'].'</h3><p><strong>'.$row['description'].'</strong></p></li>';    
 
-	//echo "<td><input type=button value='update' onClick='updateStock({$row['id']});'> </td></tr>";
-
-    
 }
-echo "</table>";
 
 
+
+	echo
+	"
+    <li><a href='#'>{$row['name']}</a></li>
+    <li><a href='#'><img class='thumbnail' src={$row['image']} width='200' height='150' /></a></li>
+    <li><a href='#'>{$row['description']}</a></li>
+    <li><a href='#'><a rel='external' href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-role='button' data-icon='delete'>Delete</a></li>
+    <li><a href='#'><a rel='external' href='editCloset.php?pass=hello&action=edit&id={$row['id']}' data-role='button' data-icon='plus'>Edit</a></li>
+    <li><a href='#'><a rel='external' href='addNewCloset.php' data-role='button' data-icon='plus' data-theme='b'>Add</a></li>
+	</ul>   ";
 
 /* close connection */
 

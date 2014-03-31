@@ -6,7 +6,7 @@
 <?php
 $link = mysqli_connect("danu6.it.nuigalway.ie", "mydb1396cs", "da1sus", "mydb1396");
 if (isset($_POST['name'])) {
-	// we have been posted the form, so create new employee record and handle uploaded image
+	// we have been posted the form, so create new stock record and handle uploaded image
 	$description = $link->escape_string($_POST['description']);
 	$price = $link->escape_string($_POST['price']);
 	$stock = $link->escape_string($_POST['stock']);

@@ -191,22 +191,21 @@ if ($mysqli->connect_errno) {
 
 $mysqli->real_query("SELECT id, name,price,url,image,description FROM trends ORDER BY id ASC");
 $res = $mysqli->use_result();
-echo '<form action="edittrends.php" method="post">';
+echo '<form action="TrendTest.php" method="post">';
 echo "The items currently trending are:...";
-echo "<table border=0><tr><td>Name</td><td>Price</td><td>Image</td><td>Description</td><td>Delete</td><td>Edit</td><td>Add</td></tr>";
+//echo "<table border=0><tr><td>Name</td><td>Delete</td><td>Edit</td><td>Add</td></tr>";
 while ($row = $res->fetch_assoc()) {
-    echo "<tr><td>{$row['name']}</td>";
-    echo "<td>&#8364;{$row['price']}</td>" ;
-    echo "<td><a href='{$row['url']}' target='blank'><img class='thumbnail' src={$row['image']} width='200' height='150' /></a></td>" ;
-    echo "<td>{$row['description']}</td>" ;
+    echo "<ul data-role='listview'><li><a href='{$row['url']}' target='blank'><img src={$row['description']} /><h3>{$row['name']}</h3><p>Blue Prada Spring/Summer2014<p><h4>&#8364;{$row['price']}</h4>
+    <a rel='external' href='edittrends.php?pass=hello&action=delete&id={$row['id']}' data-role='button' data-icon='delete'>Delete</a><a rel='external' href='edittrends.php?pass=hello&action=edit&id={$row['id']}'data-role='button' data-icon='plus'>Edit</a></a></li>";
+  
 	//echo "<td><input type=button value='delete' onClick='deleteStock({$row['id']});'> </td>";
-	echo "<td><a rel='external' href='edittrends.php?pass=hello&action=delete&id={$row['id']}' data-role='button' data-icon='delete'>Delete</a></td>";
-	echo "<td><a rel='external' href='edittrends.php?pass=hello&action=edit&id={$row['id']}'data-role='button' data-icon='plus'>Edit</a></td>";
-	echo "<td><a rel='external' href='addNewtrend.php' data-role='button' data-icon='plus'>Add</a></td></tr>";
+	//echo "<a rel='external' href='edittrends.php?pass=hello&action=delete&id={$row['id']}' data-role='button' data-icon='delete'>Delete</a></td>";
+	//echo "<td><a rel='external' href='edittrends.php?pass=hello&action=edit&id={$row['id']}'data-role='button' data-icon='plus'>Edit</a></td>";
 	//echo "<td><input type=button value='update' onClick='updateStock({$row['id']});'> </td></tr>";
     
 }
-echo "</table>";
+//echo "</table>";
+	echo "<a rel='external' href='addNewtrend.php' data-role='button' data-icon='plus'>Add</a>";
 
 
 

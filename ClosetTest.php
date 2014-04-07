@@ -1,5 +1,14 @@
-<!-- able to insert a login with a password, if password mathches then query for manager is returned-->
-<!-- Working 4pm fri 22nd march-->
+<?PHP
+
+session_start();
+
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+
+	header ("Location: http://danu6.it.nuigalway.ie/siobhancollins/login.php");
+
+}
+
+?>
 
 <!DOCTYPE html>
 <html>

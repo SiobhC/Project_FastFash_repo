@@ -92,6 +92,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
     	<a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
     	<a href="#" data-role="button" data-icon="plus">Add Me On Twitter</a>
     	<a href="#" data-role="button" data-icon="plus">Add Me On Instagram</a>
+    	<a href ="page2.php" rel="external">Log out</a>
 </div>
   
   

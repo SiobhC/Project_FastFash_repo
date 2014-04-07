@@ -1,5 +1,14 @@
-<!-- able to insert a login with a password, if password mathches then query for manager is returned-->
-<!-- Working 4pm fri 22nd march-->
+<?PHP
+
+session_start();
+
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+
+	header ("Location: http://danu6.it.nuigalway.ie/siobhancollins/login.php");
+
+}
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -114,15 +123,6 @@ var password = "<? echo $_GET['pass'];  ?>";
 
 
 <?php 
- 
-if ($_GET['pass'] != "hello")
-	{
-		 echo 'Invalid password.';
-   				 
-   	}
-   	
-else   				 
-{
 
 
 // Output: Password is valid!
@@ -145,6 +145,11 @@ if ($result = mysqli_query($link, "SELECT messages FROM comments")) {
   
     mysqli_free_result($result);
 }
+
+ 
+ echo $_SESSION['username'];
+ echo $_SESSION['pass'];
+ echo "This is for session variables";
 
 
 
@@ -183,8 +188,6 @@ mysqli_close($link);
 
 
 
-
-}
 
 ?>
 <!-- end content --> 

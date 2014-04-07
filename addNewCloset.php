@@ -1,3 +1,14 @@
+<?PHP
+
+session_start();
+
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+
+	header ("Location: http://danu6.it.nuigalway.ie/siobhancollins/login.php");
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>

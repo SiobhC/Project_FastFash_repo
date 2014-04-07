@@ -1,5 +1,5 @@
  <?php 
- // Connects to your Database users2
+ // Connects to your Database 
 
  // Output: Password is valid!
 
@@ -20,7 +20,7 @@ if (mysqli_connect_errno()) {
 
  //This makes sure they did not leave any fields blank
 
- if (!$_POST['username'] | !$_POST['pass'] | !$_POST['pass2']) {
+ if (!$_POST['username'] || !$_POST['pass'] || !$_POST['pass2']) {
 
  		die('You did not complete all of the required fields');
 
@@ -33,23 +33,23 @@ if (mysqli_connect_errno()) {
  	if (!get_magic_quotes_gpc()) {
 
  		$_POST['username'] = addslashes($_POST['username']);
-
+		
  	}
 
+	
 
-
- $check = mysqli_query($link, "SELECT username, pass FROM users2 WHERE username='{$_POST['username']}' AND pass='{$_POST['pass']}';");
- $usercheck = $_POST['username'];
-$check2 = mysqli_num_rows($check);
+    $check = mysqli_query($link, "SELECT * FROM closet WHERE username='{$_POST['username']}' AND pass='{$_POST['pass']}';");
+    $usercheck = $_POST['username'];
+	$check2 = mysqli_num_rows($check);
 
 
 
  //if the name exists it gives an error
 
  if ($check2 != null) {
-
+		echo "logged on!";
  		die('Sorry, the username '.$_POST['username'].' is already in use.');
-
+	
  				}
 
 
@@ -61,10 +61,11 @@ $check2 = mysqli_num_rows($check);
  		die('Your passwords did not match. ');
 
  	}
+	
+   
 
 
-
- 	// here we encrypt the password and add slashes if needed
+ 	// encrypt passwords
 
  	$_POST['pass'] = md5($_POST['pass']);
 
@@ -80,12 +81,36 @@ $check2 = mysqli_num_rows($check);
 
  // now we insert it into the database
 
- 	 $insert = mysqli_query($link,"INSERT INTO users2 (username, pass)
 
- 			VALUES '{$_POST['username']}', '{$_POST['pass']}';");
- 			
- 	//$add_member = mysqli_query($insert);
+ 	$username = $link->escape_string($_POST['username']);
+	$pass = $link->escape_string($_POST['pass']);
+	$email = $link->escape_string($_POST['email']);
+	$lastname = $link->escape_string($_POST['lastname']);
+	$firstname = $link->escape_string($_POST['firstname']);
+	
 
+	
+ 
+	$sql = "INSERT INTO closet (username, pass, email, lastname, firstname) VALUES ('{$username}','{$pass}', '{$email}', '{$lastname}','{$firstname}');";
+	$link->query($sql);
+	
+	
+	
+	// IF ALL OKAY SET SESSION
+	session_start();
+	$username = $_POST['username'];
+	$pass = $_POST['pass'];
+    setcookie("username", $username, time()+7200);
+    setcookie("pass", $pass, time()+7200);
+    $_SESSION['username'] = $_POST['username'];
+    $_SESSION['pass'] = $_POST['pass'];
+    $_SESSION['login'] = "1";
+    $_SESSION['start'] = time();
+    $_SESSION['expire'] = $_SESSION['start'] + (60 * 60 * 60);
+    header("Location: http://danu6.it.nuigalway.ie/siobhancollins/FastFash.php");
+    exit();
+    
+   
  	?>
 
 
@@ -125,7 +150,25 @@ $check2 = mysqli_num_rows($check);
  <input type="password" name="pass2" maxlength="10">
 
  </td></tr>
+ 
 
+ <tr><td>FirstName:</td><td>
+
+ <input type="text" name="firstname" maxlength="60">
+
+ </td></tr>
+
+<tr><td>LastName:</td><td>
+
+ <input type="text" name="lastname" maxlength="60">
+
+ </td></tr>
+ 
+ <tr><td>email:</td><td>
+
+ <input type="text" name="email" maxlength="60">
+
+ </td></tr>
  <tr><th colspan=2><input type="submit" name="submit" 
 value="Register"></th></tr> </table>
 

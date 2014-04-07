@@ -1,3 +1,15 @@
+<?PHP
+
+session_start();
+
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+
+	header ("Location: http://danu6.it.nuigalway.ie/siobhancollins/login.php");
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +43,6 @@
 </head>
 <body class="home">
 
-
 <!-- end print cookies -->
 
 <!-- Home -->
@@ -43,9 +54,12 @@
   	<div id="wordmark"> </div>
   	<h2 id="banner"><a href="http://cooltext.com"><img src="http://images.cooltext.com/3662447.png" width="250" height="78" alt="FastFash"/></a>
 <br /></h2>
-
-
-
+	<?php
+ 
+ echo $_SESSION['username'];
+ echo $_SESSION['pass'];
+ echo "This is for session variables";
+?>
 
   </div> 	
     <ul data-role="listview" data-inset="true"data-filter="true">

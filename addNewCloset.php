@@ -80,7 +80,7 @@ $dest = "closet/{$bfn}";
 if (move_uploaded_file($_FILES['content']['tmp_name'], $dest)) {
 $sql = "INSERT INTO closet (image,name,description) VALUES ('closet/{$bfn}','{$name}','{$description}');";
 $link->query($sql);
-//echo "<font color=red>New Image has been added!</font><P>";
+echo "<font color=red>New Image has been added!</font><P>";
 header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
 }
 else {
@@ -91,7 +91,7 @@ echo "<font color=red>Error moving jpg file to {$dest}</font><P>";
 else {
 // we have not been posted the form, so present it to user
 echo "Create New Upload:<p>";
-echo "<form enctype='multipart/form-data' method='post' action='addNewCloset.php'>";
+echo "<form enctype='multipart/form-data' method='post' action='addNewCloset.php' data-ajax='false'>";
 // Name
 echo "FileName <input type=text name='name' style='width:250px;'><br>";
 // Description
@@ -99,7 +99,7 @@ echo "Description <input type=text name='description' style='width:250px;'><br>"
 
 echo "</select><br>";
 // Upload mugshot image
-echo "Photo <input name='content'  type=file><P>";
+echo "Photo <input name='content' id='content' type='file'><P>";
 // Submit button
 echo "<input type=submit value='Create'>";
 echo "</form>";

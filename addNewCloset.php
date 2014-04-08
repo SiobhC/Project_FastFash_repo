@@ -98,10 +98,10 @@ echo "FileName <input type=text name='name' style='width:250px;'><br>";
 echo "Description <input type=text name='description' style='width:250px;'><br>";
 
 echo "</select><br>";
-// Upload mugshot image
-echo "Photo <input name='content' id='content' type='file'><P>";
+// Upload mugshot image.
+echo "Photo <input name='content' id='content'  type='file'><P>";
 // Submit button
-echo "<input type=submit value='Create'>";
+echo "<input type=submit value='Create' >";
 echo "</form>";
 }
 ?>

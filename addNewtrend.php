@@ -76,7 +76,7 @@ var password = "<? echo $_GET['pass'];  ?>";
     <div data-role="popup" id="myPopup" class="ui-content">
       <h3>Welcome to Trends page!</h3>
       <p>This page shows all the trends from the Spring/Summer 2014 collection</p>
-  </div>
+  	</div>
 </div>
 
 
@@ -112,7 +112,7 @@ echo "<font color=red>Error moving jpg file to {$dest}</font><P>";
 else {
 // we have not been posted the form, so present it to user
 echo "Create New Upload:<p>";
-echo "<form enctype='multipart/form-data' method='post' action='addNewtrend.php'>";
+echo "<form enctype='multipart/form-data' method='post' data-ajax='false' action='addNewtrend.php'>";
 // Name
 echo "FileName <input type=text name='name' style='width:250px;'><br>";
 // Description

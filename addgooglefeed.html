@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+<!-- include Google Feed API --> 
+<script type="text/javascript" src="http://www.google.com/jsapi?key=[your API key]"></script> 
+ 
+<!-- include this plugin --> 
+<script type="text/javascript" src="jquery.gfeed.js"></script> 
+ 
+<script type="text/javascript"> 
+    // when the DOM is ready, convert the feed anchors into feed content 
+    $(document).ready(function() { 
+        $('a.feed').gFeed( { target: '#feeds', tabs: true, max:10 } ); 
+    }); 
+    
+    $(document).ready(function() { 
+    // add a feed manually 
+    $('#alistapart').gFeed({  
+        url: 'http://www.alistapart.com/feed/rss.xml', 
+        title: 'A List Apart Feed (Added by Brute Force)' 
+    });     
+}); 
+    google.load("feeds", "1");
+
+function OnLoad() {
+  // Create a feed control
+  var feedControl = new google.feeds.FeedControl();
+
+  // Add two feeds.
+  feedControl.addFeed("http://www.digg.com/rss/index.xml", "Digg");
+  feedControl.addFeed("http://feeds.feedburner.com/Techcrunch", "TechCrunch");
+
+  // Draw it.
+  feedControl.draw(document.getElementById("content"));
+}
+
+google.setOnLoadCallback(OnLoad);​
+</script> 
+
+</head>
+
+<body>
+<div id="feeds"> 
+    <a class="feed" href="http://jquery.com/blog/feed/">jQuery Blog</a> 
+    <a class="feed" href="http://www.learningjquery.com/feed/">Learning jQuery</a> 
+</div> 
+
+
+<div id="alistapart"></div>
+
+</body>
+</html>

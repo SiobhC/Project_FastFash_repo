@@ -160,7 +160,7 @@ if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-$mysqli->real_query("SELECT id, name,image,description FROM closet ORDER BY id ASC");
+$mysqli->real_query("SELECT id, pass, username,name,image,description FROM closet WHERE username='{$_SESSION['username']}'");
 $res = $mysqli->use_result();
 echo '<form action="editCloset.php" method="post">';
 echo "The items currently in your closet are:...";

@@ -78,7 +78,7 @@ echo "<font color=red>The file ({$bfn}) does not appear to be a jpg!</font><P>";
 else {
 $dest = "closet/{$bfn}";
 if (move_uploaded_file($_FILES['content']['tmp_name'], $dest)) {
-$sql = "INSERT INTO closet (image,name,description) VALUES ('closet/{$bfn}','{$name}','{$description}');";
+$sql = "INSERT INTO closet (username, image,name,description) VALUES ('{$_SESSION['username']}','closet/{$bfn}','{$name}','{$description}') ";
 $link->query($sql);
 echo "<font color=red>New Image has been added!</font><P>";
 header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");

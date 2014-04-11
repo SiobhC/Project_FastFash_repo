@@ -31,8 +31,8 @@ if(isset($_POST['submit'])) {
     $email_subject = "Query";
  
  	
-//get_magic_quotes adds backslashes to the inputted form data, therefore increasing security for app
-//and stopping the user from droping or modifying the database
+	//get_magic_quotes adds backslashes to the inputted form data, therefore increasing security for app
+	//and stopping the user from droping or modifying the database
  	if (!get_magic_quotes_gpc()) {
 
  		$_POST['username'] = addslashes($_POST['username']);
@@ -41,31 +41,19 @@ if(isset($_POST['submit'])) {
  		$_POST['lastname'] = addslashes($_POST['lastname']);
 		
  	}
+ 	 
 
+ 	//This makes sure they did not leave any fields blank
 
-	
-$query = mysqli_query($link,"SELECT username FROM closet WHERE username='".$_POST['username']."'");	
-	 if (mysqli_num_rows($query) != 0)
-  {		
-       die("Username already exists");
-        header("Location: http://danu6.it.nuigalway.ie/siobhancollins/login.php");
-    exit();
-     
-  }
+ 	if (!$_POST['username'] || !$_POST['pass'] || !$_POST['pass2']) {
 
+ 		die('You did not complete all of the required fields, please enter both a username and password to register');
 
-
- //if the name exists it gives an error, as user already exists in database or username is not original
- // checks if the username is in use
- if ($check2 != null) {
-		
- 		die('Sorry, the username '.$_POST['username'].' is already in use.');
-		 header("Location: http://danu6.it.nuigalway.ie/siobhancollins/login.php");	
- 				}
-
-
+ 	}
+ 	
+ 	
   
-//this makes sure both passwords entered match
+	//this makes sure both passwords entered match
 
  	if ($_POST['pass'] != $_POST['pass2']) {
 
@@ -73,15 +61,22 @@ $query = mysqli_query($link,"SELECT username FROM closet WHERE username='".$_POS
 
  	}
 	
-   
-
 
  	// encrypt passwords using md5
 
  	$_POST['pass'] = md5($_POST['pass']);
 
 
+	
+ 	//if the name exists it gives an error, as user already exists in database or username is not original
+ 	// checks if the username is in use
+	$query = mysqli_query($link,"SELECT username FROM closet WHERE username='".$_POST['username']."'");	
+	 	if (mysqli_num_rows($query) != 0)
+  	{		
+       	died("Sorry this Username already exists, please enter a unique username with more than 5 characters");
 
+     
+  	}
 
  
 
@@ -140,8 +135,7 @@ $query = mysqli_query($link,"SELECT username FROM closet WHERE username='".$_POS
  	
     $user_email = $_POST['email']; 
   
-     
-	$user_password  = $_POST['pass']; 
+    $user_password  = $_POST['pass']; 
  
      
  
@@ -180,9 +174,9 @@ $query = mysqli_query($link,"SELECT username FROM closet WHERE username='".$_POS
     $error_message .= 'The name entered must contain more than 1 valid characters.<br />';
  
   }
-   if(strlen($lastname) < 1) {
+   if(strlen($lastname) < 3) {
  
-    $error_message .= 'The name entered must contain more than 1 valid characters.<br />';
+    $error_message .= 'The name entered must contain more than 3 valid characters.<br />';
  
   }
    if(strlen($username) < 5) {
@@ -232,34 +226,16 @@ $query = mysqli_query($link,"SELECT username FROM closet WHERE username='".$_POS
  
      
  
-// create email headers
+	// create email headers
  
-$headers = 'From: '.$email_from."\r\n".
+	$headers = 'From: '.$email_from."\r\n".
  
-'Reply-To: '.$email_from."\r\n" .
+	'Reply-To: '.$email_from."\r\n" .
  
-'X-Mailer: PHP/' . phpversion();
+	'X-Mailer: PHP/' . phpversion();
  
-@mail($email_to, $email_subject, $email_message, $headers);  
- echo "Thank you for contacting us. We will be in touch with you very soon.";
-
-
-
-
-
-
-
-
- //This makes sure they did not leave any fields blank
-
- if (!$_POST['username'] || !$_POST['pass'] || !$_POST['pass2']) {
-
- 		die('You did not complete all of the required fields');
-
- 	}
-
-
-
+	@mail($email_to, $email_subject, $email_message, $headers);  
+	
 
 	
  	// now we insert it into the database
@@ -376,34 +352,6 @@ $headers = 'From: '.$email_from."\r\n".
 
  }
  ?> 
-
-
-
-
-
-
-</div>
-
-
-<script>
-	$(document).ready(function(){
-		$("#register").click(function(){
-			var user_username = $("#username").val();
-			var user_password = $("#pass").val();
-			var userExists = localStorage.getItem("username");
-			
-			if(userExists && user_username == userExists) {
-				alert("Error: "+userExists+" already exists");
-				}
-				else{
-				alert("Saving "+user_username+" /" + email" + to local storage"):
-				console.log("Saving " + username + "/" +email+ " to local storage"):
-				localStorage.setItem("username", username);
-				localStorage.setItem("email", email);
-				}
-			});
-			});
-</script>
 
 </body>
 </html>

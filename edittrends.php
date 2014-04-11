@@ -30,53 +30,35 @@
 	<!-- End WOWSlider.com HEAD section -->
 	
 </head>
-<script>
-var password = "<? echo $_GET['pass'];  ?>";
-	function updateStock(id){
-		var txtbox = document.getElementById("description" + pk);
-	var url = "edittrends.php?pass="+password+"&action=update&id="+id+"&description="+txtbox.value;
-	window.location= url;
-	}
-	
-	function deleteStock(id){
-		var url="edittrends.php?pass="+password+"&action=delete+&id="+id;
-		window.location=url;
-	}	
 
-
-</script>
 <body>
 <!--Trends ----------------------------------->
 
 
 <div data-role="page" id="Trends">
   	<div data-role="header" data-position ="fixed">
-  		<a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left"
-  		data-transition = "flip">Home</a>
-  		<a href="#" class="ui-btn ui-icon-search ui-btn-icon-left ui-corner-all ui-shadow" data-transition = "flip">Search</a>
-  
-
-    	<h1>Welcome To My Trends Page</h1>
-  	</div>
+  		<a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left" data-transition = "flip">Home</a>
+  		<a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
+		<h1>Welcome To My Trends Page</h1>
+</div>
   	
   	
-  	<!--Navigation bar ----------------------------------->
-  	 <div data-role="navbar">
+<!--Navigation bar ----------------------------------->
+<div data-role="navbar">
       <ul>
     	<li><a rel="external" href="FastFash.php#Outfit">Outfit of the Day</a>
         <li><a rel="external" href="Closet.php?pass=hello">Closet Profile</a></li>
       </ul>
-    </div>
+</div>
   	
   	
   	<!--Popup ----------------------------------->
 <div data-role="main" class="ui-content">
     <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all">Hi there!</a>
-
-    <div data-role="popup" id="myPopup" class="ui-content">
-      <h3>Welcome to Trends page!</h3>
-      <p>This page shows all the trends from the Spring/Summer 2014 collection</p>
-  </div>
+		<div data-role="popup" id="myPopup" class="ui-content">
+      		<h3>Welcome to Trends page!</h3>
+      		<p>This page shows all the trends from the Spring/Summer 2014 collection</p>
+  		</div>
 </div>
 
 
@@ -150,43 +132,26 @@ echo "</table>";
 }
 
 
-
-
-
-
-
-
 /* close connection */
 
-//mysqli_close($link);
-
-
-
+mysqli_close($link);
 
 }
 
 ?>
 
+	
+<!--Footer ----------------------------------->
+<div data-role="footer" data-position ="fixed">    	
+    	<a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus""prefetchThisPage.html" data-prefetch>Add Me On Facebook</a>
+</div>
+
 <!-- end content --> 
- 	
+
 </div> 
 
 <!-- end page --> 
-
 </div>
-
-	
-<!--Footer ----------------------------------->
-  	<div data-role="footer" data-position ="fixed">
-    	<h1>Contact us</h1>
-    	<a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus""prefetchThisPage.html" data-prefetch>Add Me On Facebook</a>
-    	<a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
-
-  	</div>
-
-</body>
-</html>
-
 
 </body>
 </html>

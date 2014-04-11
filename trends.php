@@ -40,33 +40,16 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 	<!-- End WOWSlider.com HEAD section -->
 	
 </head>
-<script>
-var password = "<? echo $_GET['pass'];  ?>";
-	function updateStock(id){
-		var txtbox = document.getElementById("description" + pk);
-	var url = "edittrends.php?pass="+password+"&action=update&id="+id+"&description="+txtbox.value;
-	window.location= url;
-	}
-	
-	function deleteStock(id){
-		var url="edittrends.php?pass="+password+"&action=delete+&id="+id;
-		window.location=url;
-	}	
 
-
-</script>
 <body>
 <!--Trends ----------------------------------->
 
 
 <div data-role="page" id="Trends">
   	<div data-role="header" data-position ="fixed">
-  		<a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left"
-  		data-transition = "flip">Home</a>
-  		<a href="#" class="ui-btn ui-icon-search ui-btn-icon-left ui-corner-all ui-shadow" data-transition = "flip">Search</a>
-  
-
-    	<h1>Welcome To My Trends Page</h1>
+  		<a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left" data-transition = "flip">Home</a>
+  		<a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
+  		<h1>Trending Items!</h1>
   	</div>
   	
   	
@@ -95,18 +78,20 @@ var password = "<? echo $_GET['pass'];  ?>";
 	<!-- Start WOWSlider.com BODY section -->
 	<div id="wowslider-container1">
 	<div class="ws_images"><ul>
-<li><img src="data1/images/prada.jpg" alt="prada" title="prada" id="wows1_0"/>Prada Sping Summer 2014</li>
-<li><a href="http://www.cosmopolitan.co.uk/fashion/shopping/spring-summer-fashion-trends-2014?page=2"><img src="data1/images/ss14trendsfloralwilliamsonde.png" alt="Floral Trends" title="Floral Trends" id="wows1_1"/></a>Floweral spin on the runaways this season!</li>
-<li><a href="http://www.cosmopolitan.co.uk/fashion/shopping/spring-summer-fashion-trends-2014?page=3"><img src="data1/images/ss14trendspinkgilesde.png" alt="Pink Everything!" title="Pink Everything!" id="wows1_2"/></a>Pink is all in this season, so stock up!</li>
-</ul></div>
+		<li><img src="data1/images/prada.jpg" alt="prada" title="prada" id="wows1_0"/>Prada Sping Summer 2014</li>
+		<li><a href="http://www.cosmopolitan.co.uk/fashion/shopping/spring-summer-fashion-trends-2014?page=2"><img src="data1/images/ss14trendsfloralwilliamsonde.png" alt="Floral Trends" title="Floral Trends" id="wows1_1"/></a>Floweral spin on the runaways this season!</li>
+		<li><a href="http://www.cosmopolitan.co.uk/fashion/shopping/spring-summer-fashion-trends-2014?page=3"><img src="data1/images/ss14trendspinkgilesde.png" alt="Pink Everything!" title="Pink Everything!" id="wows1_2"/></a>Pink is all in this season, so stock up!</li>
+		</ul></div>
+
 <div class="ws_bullets"><div>
-<a href="#" title="prada"><img src="data1/tooltips/prada.jpg" alt="prada"/>1</a>
-<a href="#" title="Floral Trends"><img src="data1/tooltips/ss14trendsfloralwilliamsonde.png" alt="Floral Trends"/>2</a>
-<a href="#" title="Pink Everything!"><img src="data1/tooltips/ss14trendspinkgilesde.png" alt="Pink Everything!"/>3</a>
+	<a href="#" title="prada"><img src="data1/tooltips/prada.jpg" alt="prada"/>1</a>
+	<a href="#" title="Floral Trends"><img src="data1/tooltips/ss14trendsfloralwilliamsonde.png" alt="Floral Trends"/>2</a>
+	<a href="#" title="Pink Everything!"><img src="data1/tooltips/ss14trendspinkgilesde.png" alt="Pink Everything!"/>3</a>
 </div></div>
+
 <span class="wsl"><a href="http://wowslider.com">Website Slideshow</a> by WOWSlider.com v5.2m</span>
 	<div class="ws_shadow"></div>
-	</div>
+</div>
 	<script type="text/javascript" src="engine1/wowslider.js"></script>
 	<script type="text/javascript" src="engine1/script.js"></script>
 	<!-- End WOWSlider.com BODY section -->
@@ -156,15 +141,6 @@ var password = "<? echo $_GET['pass'];  ?>";
 
 
 <?php 
- 
-if ($_GET['pass'] != "hello")
-	{
-		 echo 'Invalid password.';
-   				 
-   	}
-   	
-else   				 
-{
 
 
 // Output: Password is valid!
@@ -225,28 +201,23 @@ mysqli_close($link);
 
 
 
-}
+
 
 ?>
-<!-- end content --> 
- 	
-</div> 
-
-<!-- end page --> 
-
-</div>
 
 	
 <!--Footer ----------------------------------->
   	<div data-role="footer" data-position ="fixed">
     	<h1>Contact us</h1>
     	<a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus""prefetchThisPage.html" data-prefetch>Add Me On Facebook</a>
-        <a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
   	</div>
 
-</body>
-</html>
+<!-- end content --> 
 
+</div> 
+
+<!-- end page --> 
+</div>
 
 </body>
 </html>

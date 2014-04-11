@@ -227,15 +227,7 @@ mysqli_close($link);
 }
 
 ?>
-<!-- end content --> 
- 	
-</div> 
 
-<!-- end page --> 
-
-</div>
-
-	
 <!--Footer ----------------------------------->
   	<div data-role="footer" data-position ="fixed">
     	<h1>Contact us</h1>
@@ -243,11 +235,12 @@ mysqli_close($link);
     	<a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
 
   	</div>
+<!-- end content --> 
 
-</body>
-</html>
+</div> 
 
-
+<!-- end page --> 
+</div>
 </body>
 </html>
 

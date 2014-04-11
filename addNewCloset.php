@@ -44,23 +44,22 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 <!--Closet Profile --------------------------------- -->
 
 <div data-role="page" id="Closet">
-  <div data-role="header" data-position ="fixed">
-  <a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left"
-  		data-transition = "flip">Home</a>
-  <a href="#" class="ui-btn ui-btn-icon-left ui-icon-search ui-corner-all ui-shadow">Search</a>
-    <h1>Welcome to your Closet Profile!</h1>
-  </div>
+  	<div data-role="header" data-position ="fixed">
+  		<a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left" data-transition = "flip">Home</a>
+  		<a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
+    	<h1>Welcome to your Closet Profile!</h1>
+  	</div>
   
-    <!--Navigation Bar ----------------------------------->
-    <div data-role="navbar">
+<!--Navigation Bar ----------------------------------->
+<div data-role="navbar">
     	<ul>
     		<li><a rel="external" href="trends.php?pass=hello">Trends</a>
     		<li><a rel="external" href="FastFASH.php#Outfit">Outfit of the Day</a>
     	</ul>
-    </div>
+</div>
    
-    <!--Closet profile content -----------------------------------> 
-  <div data-role="content" >
+<!--Closet profile content -----------------------------------> 
+<div data-role="content" >
 
 
 <?php
@@ -72,57 +71,55 @@ if (isset($_POST['name'])) {
 	
 	$bfn = basename($_FILES['content']['name']);
 	$ext = strtolower(substr(strrchr($bfn, '.'), 1));
-if (!($ext=="jpg")) {
-echo "<font color=red>The file ({$bfn}) does not appear to be a jpg!</font><P>";
-}
-else {
-$dest = "closet/{$bfn}";
-if (move_uploaded_file($_FILES['content']['tmp_name'], $dest)) {
-$sql = "INSERT INTO closet (username, image,name,description) VALUES ('{$_SESSION['username']}','closet/{$bfn}','{$name}','{$description}') ";
-$link->query($sql);
-echo "<font color=red>New Image has been added!</font><P>";
-header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
-}
-else {
-echo "<font color=red>Error moving jpg file to {$dest}</font><P>";
-}
-}
-}
-else {
-// we have not been posted the form, so present it to user
-echo "Create New Upload:<p>";
-echo "<form enctype='multipart/form-data' method='post' action='addNewCloset.php' data-ajax='false'>";
-// Name
-echo "FileName <input type=text name='name' style='width:250px;'><br>";
-// Description
-echo "Description <input type=text name='description' style='width:250px;'><br>";
+		if (!($ext=="jpg")) {
+			echo "<font color=red>The file ({$bfn}) does not appear to be a jpg!</font><P>";
+				}
 
-echo "</select><br>";
-// Upload mugshot image.
-echo "Photo <input name='content' id='content'  type='file'><P>";
-// Submit button
-echo "<input type=submit value='Create' >";
-echo "</form>";
-}
+			else {
+				$dest = "closet/{$bfn}";
+			
+			if (move_uploaded_file($_FILES['content']['tmp_name'], $dest)) {
+				$sql = "INSERT INTO closet (username, image,name,description) VALUES ('{$_SESSION['username']}','closet/{$bfn}','{$name}','{$description}') ";
+				$link->query($sql);
+
+			echo "<font color=red>New Image has been added!</font><P>";
+			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
+			}
+			
+				else {
+						echo "<font color=red>Error moving jpg file to {$dest}</font><P>";
+					}
+			}
+		}
+
+		else {
+			// we have not been posted the form, so present it to user
+			echo "Create New Upload:<p>";
+			echo "<form enctype='multipart/form-data' method='post' action='addNewCloset.php' data-ajax='false'>";
+			// Name of image
+			echo "FileName <input type=text name='name' style='width:250px;'><br>";
+			// Description of image
+			echo "Description <input type=text name='description' style='width:250px;'><br>";
+			echo "</select><br>";
+			// Upload image.
+			echo "Photo <input name='content' id='content'  type='file'><P>";
+			// Submit button
+			echo "<input type=submit value='Create' >";
+			echo "</form>";
+			}
 ?>
-
 
 <!-- end content --> 
 
 </div> 
 
-
 <!-- end page --> 
 </div>
 
 <!--Footer -----------------------------------> 
-  <div data-role="footer" data-position ="fixed">
-   <a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
-    <a href="#" data-role="button" data-icon="plus">Add Me On Twitter</a>
-    <a href="#" data-role="button" data-icon="plus">Add Me On Instagram</a>
-    <h1>Contact us</h1>
-  </div>
-  
+<div data-role="footer" data-position ="fixed">
+   	<a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
+</div>
       
 
 </body>

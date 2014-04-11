@@ -34,9 +34,8 @@
 
 <div data-role="page" id="Closet">
   <div data-role="header" data-position ="fixed">
-  <a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left"
-  		data-transition = "flip">Home</a>
-  <a href="#" class="ui-btn ui-btn-icon-left ui-icon-search ui-corner-all ui-shadow">Search</a>
+  <a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left" data-transition = "flip">Home</a>
+   <a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
     <h1>Welcome to your Closet Profile!</h1>
   </div>
   
@@ -98,22 +97,18 @@ echo "</form>";
 }
 ?>
 
-<!-- end content --> 
 
-</div> 
-
-
-<!-- end page --> 
-</div>
 
 <!--Footer -----------------------------------> 
   <div data-role="footer" data-position ="fixed">
    <a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
-    <a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
-
   </div>
   
-      
+<!-- end content --> 
 
+</div> 
+
+<!-- end page --> 
+</div>
 </body>
 </html>

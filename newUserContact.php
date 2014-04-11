@@ -1,53 +1,102 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>jQuery Mobile page</title>
-  
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
-	
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script> 
-
-	<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
-    <script type="text/javascript" charset="utf-8">
-	
-	
-	
-	<script type="text/javascript" src="/Users/admin/Documents/1.0.11/simple-inheritance.min.js">
-	<script type="text/javascript" src="/Users/admin/Documents/1.0.11/code-photoswipe-1.0.9.min.js">
-	//NB you may have to change the location of this stylesheet to MAMP/test/jquery-mobile-.....
-
-					
-    
-    <script type="text/javascript" src="/path/to/jquery.js"></script>
-	<script type="text/javascript" src="/Applications/MAMP/htdoc/test/jquery.jcarousel.js"></script>
-	
-	
-</head>
-
-
 
 <?php
  
-if(isset($_POST['email'])) {
+if(isset($_POST['submit'])) {
  
      
  
-    
+     // Connects to the  Database closet where there is information about specific users
+
+
+	$link = mysqli_connect("danu6.it.nuigalway.ie", "mydb1396cs", "da1sus", "mydb1396");
+
+	/* check connection */
+	if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+	}
+	
+		
+	//Select username and password from database matching the inputted username and password.
+	//If the number of rows > 0, that username and password already exist.
+    $check = mysqli_query($link, "SELECT * FROM closet WHERE username='{$_POST['username']}' AND pass='{$_POST['pass']}';");
+    $usercheck = $_POST['username'];
+	$check2 = mysqli_num_rows($check);
+	
+	
+
  
     $email_to = "s.collins9@nuigalway.ie";
  
     $email_subject = "Query";
  
+ 	
+//get_magic_quotes adds backslashes to the inputted form data, therefore increasing security for app
+//and stopping the user from droping or modifying the database
+ 	if (!get_magic_quotes_gpc()) {
+
+ 		$_POST['username'] = addslashes($_POST['username']);
+ 		$_POST['pass'] = addslashes($_POST['pass']);
+ 		$_POST['firstname'] = addslashes($_POST['firstname']);
+ 		$_POST['lastname'] = addslashes($_POST['lastname']);
+		
+ 	}
+
+
+	
+$query = mysqli_query($link,"SELECT username FROM closet WHERE username='".$_POST['username']."'");	
+	 if (mysqli_num_rows($query) != 0)
+  {		
+       die("Username already exists");
+        header("Location: http://danu6.it.nuigalway.ie/siobhancollins/login.php");
+    exit();
+     
+  }
+
+
+
+ //if the name exists it gives an error, as user already exists in database or username is not original
+ // checks if the username is in use
+ if ($check2 != null) {
+		
+ 		die('Sorry, the username '.$_POST['username'].' is already in use.');
+		 header("Location: http://danu6.it.nuigalway.ie/siobhancollins/login.php");	
+ 				}
+
+
+  
+//this makes sure both passwords entered match
+
+ 	if ($_POST['pass'] != $_POST['pass2']) {
+
+ 		die('Your passwords did not match. ');
+
+ 	}
+	
+   
+
+
+ 	// encrypt passwords using md5
+
+ 	$_POST['pass'] = md5($_POST['pass']);
+
+
+
+
+ 
+
+	//Retrieve table data and assign to variables database
+ 	$username = $link->escape_string($_POST['username']);
+	$pass = $link->escape_string($_POST['pass']);
+	$email = $link->escape_string($_POST['email']);
+	$lastname = $link->escape_string($_POST['lastname']);
+	$firstname = $link->escape_string($_POST['firstname']);
+	//$id = $link->escape_string($_POST['id']);
+	
+
      
  
-     
- 
-    function died($error) {
+     function died($error) {
  
         // your error code can go here
  
@@ -72,11 +121,10 @@ if(isset($_POST['email'])) {
         !isset($_POST['lastname']) ||
  
         !isset($_POST['username']) ||
+        
         !isset($_POST['pass']) ||
         
-        !isset($_POST['email']) ||
- 
-        !isset($_POST['about'])) {
+        !isset($_POST['email'])) {
  
         died('There appears to be some errors in the form you submitted.');       
  
@@ -92,7 +140,6 @@ if(isset($_POST['email'])) {
  	
     $user_email = $_POST['email']; 
   
-    $user_about  = $_POST['about']; 
      
 	$user_password  = $_POST['pass']; 
  
@@ -122,11 +169,7 @@ if(isset($_POST['email'])) {
  
   }
  
-  if(strlen($about) < 5) {
- 
-    $error_message .= 'The about section you entered do not appear to be valid and need to have more than 25 characters.<br />';
- 
-  }
+
    if(strlen($email) < 5) {
  
     $error_message .= 'The email you entered do not appear to be valid and need to have more than 10 characters.<br />';
@@ -183,8 +226,6 @@ if(isset($_POST['email'])) {
  
     $email_message .= "password: ".clean_string($pass)."\n";
     
-    $email_message .= "About: ".clean_string($about)."\n";
-    
     $email_message .= "Username: ".clean_string($username)."\n";
  
      
@@ -204,152 +245,137 @@ $headers = 'From: '.$email_from."\r\n".
 
 
 
-$link = mysqli_connect("danu6.it.nuigalway.ie", "mydb1396cs", "da1sus", "mydb1396");
 
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
+
+
+
+
+ //This makes sure they did not leave any fields blank
+
+ if (!$_POST['username'] || !$_POST['pass'] || !$_POST['pass2']) {
+
+ 		die('You did not complete all of the required fields');
+
+ 	}
+
+
+
+
+	
+ 	// now we insert it into the database
+	$sql = "INSERT INTO closet (username, pass, email, lastname, firstname) VALUES ('{$username}','{$pass}', '{$email}', '{$lastname}','{$firstname}');";
+	$link->query($sql);
+	
+	
+	
+	// If all the data is ok and has been checked against the DB, start the session.Store username and password for the user.
+	//Relocate th euser to the opening page of FastFash.php
+	session_start();
+	$username = $_POST['username'];
+	$pass = $_POST['pass'];
+    setcookie("username", $username, time()+7200);
+    setcookie("pass", $pass, time()+7200);
+    //setcookie("id", $id, time()+7200);
+    $_SESSION['username'] = $_POST['username'];
+    $_SESSION['pass'] = $_POST['pass'];
+    $_SESSION['login'] = "1";
+    //$_SESSION['id'] = "1";
+    $_SESSION['start'] = time();
+    $_SESSION['expire'] = $_SESSION['start'] + (60 * 60 * 60);
+   	header("Location: http://danu6.it.nuigalway.ie/siobhancollins/FastFash.php");
     exit();
-}
 
-/*// sql query for CREATE TABLE
-$sql = "INSERT INTO `comments` (
- `message_id`,
- `name`,
- `message`,
- `email`,
- `category`,
- `replied`,
- `date_added`
-  
- )"; 
+} 
 
- Performs the $sql query on the server to create the table
-if ($link->query($sql) === TRUE) {
-  echo 'Table "comments" added created';
-}
-else {
- echo 'Error: '. $link->error;
-}
-*/
+//else form has not been posted and the HTML form can now be posted to user to collect parameters 
+ else 
+ {	
+ ?><!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Mobile page</title>
+    
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
+	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 
-
-
-
-/* prepare statement */
-if ($stmt = mysqli_prepare($link, "INSERT INTO users2  (firstname,lastname, username,email,pass,about) VALUES('{$_POST['firstname']}','{$_POST['lastname']}','{$_POST['username']}','{$_POST['email']}',md5('{$_POST['pass']}'),'{$_POST['about']}');")) {
-	$stmt->execute();
-    /* fetch values */
-    while (mysqli_stmt_fetch($stmt)) {
-        printf("%s %s %s \n",$_POST['firstname'],$_POST['lastname'],$_POST['username'],$_POST['pass'],$_POST['username'], $_POST['about']);
-    }
-
-    /* close statement */
-    mysqli_stmt_close($stmt);
-}
+    
+    <script type="text/javascript" src="/path/to/jquery.js"></script>
+	<script type="text/javascript" src="/Applications/MAMP/htdoc/test/jquery.jcarousel.js"></script>
+	
 
 
+</head>
 
 
+<body>
 
-/* close connection */
+<!--Registration page -->
+<div data-role="page" >
+		<div data-role="header">
+			<h2 id="banner">FastFash!</h2>
+		</div>
 
-mysqli_close($link);
-?>
+<!-- header that includes a link to login page for already registerested users-->
+		
+<a rel="external" href="login.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left" data-transition = "flip">Login</a>	
+	
+	<div data-role="content">
+	
+
+<!--Form to collect information from the user. Posts to same page -->
+ 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" data-ajax='false'">
+ 			<table border="0">
+				<tr><td>Username:</td><td>
+				<input type="text" name="username" maxlength="60">
+				</td></tr>
+
+ 				<tr><td>Password:</td><td>
+				<input type="password" name="pass" maxlength="10">
+				</td></tr>
+
+			 	<tr><td>Confirm Password:</td><td>
+				<input type="password" name="pass2" maxlength="10">
+				</td></tr>
  
+				<tr><td>FirstName:</td><td>
+				<input type="text" name="firstname" maxlength="60">
+				</td></tr>
+
+				<tr><td>LastName:</td><td>
+				<input type="text" name="lastname" maxlength="60">
+				</td></tr>
  
+ 				<tr><td>Email:</td><td>
+				<input type="text" name="email" maxlength="60">
+				</td></tr>
+ 
+ 				<tr><th colspan=2><input type="submit" name="submit" value="Register"></th></tr> 
+ 			</table>
+
+ </form>
+ 
+<!-- end content --> 	
+</div>
+	
+	
+	
+<!-- end page --> 
+</div>	
+	
+
+</body>
+</html>
+
 <?php
- 
-}
- 
-?>
 
-<dl>
-<!-- Paragraph styled with specific padding-->
-	<p class="padding"> Contact us, we are happy to help!:</p>
-
-
-	<dt>Sales assistants:</dt>
-	<dd>091-565254 <br>
-	sales_shoezz@gmail.com
-	</dd>
-
-	<dt>Fulfillment Executive:</dt>
-	<dd>091-565255<br>
-	mark_shoezz@gmail.com
-	</dd>
-
-	<dt>Marketing Officer:</dt>
-	<dd>091-565256<br>
-	peter_shoezz@gmail.com
-	</dd>
-
-	<dt>Secretary:</dt>
-	<dd>091-565257<br>
-	linda_shoezz@gmail.com
-	</dd>
-	
-	
-</dl>
-
-	<a href="">
-	<br>
-	<select name="queries" form="myform">
-  	<option value="Sales">Sales</option>
-  	<option value="Returns">Returns</option>
-  	<option value="Shipping">Shipping</option>
-  	<option value="Stock">Stock</option>
-  	</select>
-	<br><br>
-	</a>
-
-
-<fieldset>
-<legend>Please fill in your Username and Password:</legend>
-<form name="contactform" method="post" action="" <?php echo $_SERVER["PHP_SELF"];?>">
-<table width="450px">
-
-
-<tr>
-<td valign="top"><label for="firstname">First Name *</label></td>
-<td valign="top"><input  type="text" name="firstname" maxlength="50" size="30"></td>
-</tr>
-
-<tr>
-<td valign="top""><label for="lastname">Last Name *</label></td>
-<td valign="top"><input  type="text" name="lastname" maxlength="50" size="30"></td>
-</tr>
-
-
-<tr>
-<td valign="top"><label for="username">UserName *</label></td>
-<td valign="top"><input  type="text" name="username" maxlength="50" size="30"></td>
-</tr>
-
-<tr>
-<td valign="top"><label for="pass">Password *</label></td>
-<td valign="top"><input  type="text" name="pass" maxlength="50" size="30"></td>
-</tr>
-
-<tr>
-<td valign="top"><label for="email">Email Address *</label></td>
-<td valign="top"><input  type="text" name="email" maxlength="80" size="30"></td>
-</tr>
-
-
-<tr>
-<td valign="top"><label for="about">About *</label></td>
-<td valign="top"><textarea  name="about" maxlength="500" cols="25" rows="6"></textarea></td>
-</tr>
-
-<tr>
-<td colspan="2" style="text-align:center"><a href=""> <input type="submit" id="submit" value="Submit"></a></td>
-</tr>
-
-</form>
-</table>
-</fieldset>
+ }
+ ?> 
 
 
 

@@ -241,8 +241,7 @@ mysqli_close($link);
   	<div data-role="footer" data-position ="fixed">
     	<h1>Contact us</h1>
     	<a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus""prefetchThisPage.html" data-prefetch>Add Me On Facebook</a>
-    	<a href="#" data-role="button" data-icon="plus">Add Me On Twitter</a>
-    	<a href="#" data-role="button" data-icon="plus">Add Me On Instagram</a>
+        <a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
   	</div>
 
 </body>

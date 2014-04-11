@@ -190,6 +190,17 @@ mysqli_close($link);
 
 
 ?>
+
+
+ <!--Footer -----------------------------------> 
+  <div data-role="footer" data-position ="fixed">
+   <a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
+   <a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
+  </div>
+  
+      
+
+<!-- --------------------------------- -->
 <!-- end content --> 
 
 </div> 
@@ -197,19 +208,6 @@ mysqli_close($link);
 
 <!-- end page --> 
 </div>
-
- <!--Footer -----------------------------------> 
-  <div data-role="footer" data-position ="fixed">
-   <a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
-    <a href="#" data-role="button" data-icon="plus">Add Me On Twitter</a>
-    <a href="#" data-role="button" data-icon="plus">Add Me On Instagram</a>
-    <h1>Contact us</h1>
-  </div>
-  
-      
-
-<!-- --------------------------------- -->
-
 
 </body>
 </html>

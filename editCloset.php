@@ -75,39 +75,41 @@ if ($mysqli->connect_errno) {
 if(isset($_POST['action'])){
 	if ($_POST['action']=="update") {
 		
-		$mysqli->real_query("UPDATE closet SET name='{$_POST['name']}',description='{$_POST['description']}' WHERE id={$_POST['id']};");
-			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/ClosetTest.php?pass=hello");
+		$mysqli->real_query("UPDATE closet SET name='{$_POST['name']}',name='{$_POST['name']}',description='{$_POST['description']}' WHERE id={$_POST['id']};");
+			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
 }
 
 }
 else if($_GET['action']=="delete") {
 		
 		$mysqli->real_query("DELETE FROM closet WHERE id={$_GET['id']};");
-		header("Location: http://danu6.it.nuigalway.ie/siobhancollins/ClosetTest.php?pass=hello");
+		header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
 		
 	
 }else if($_GET['action']=="edit") {
 		
-		$mysqli->real_query("SELECT * FROM closet WHERE username='{$_SESSION['username']}'");
-$res = $mysqli->use_result();
-echo '<form action="editCloset.php?pass=hello" method="post">';
-echo "Please modify the tables below to adjust the items in your closet:...";
-echo "<table border=1><tr><td>Name</td><td>Description</td><td>Submit</td></tr>";
-while ($row = $res->fetch_assoc()) {
-    echo "<tr><td><input type='text' name='name' value='{$row['name']}'>";
-    echo "<input type='hidden' name='id' value='{$_GET['id']}'>";
-    echo "<input type='hidden' name='action' value='update'></td>";
+		$mysqli->real_query("SELECT * FROM closet WHERE id={$_GET['id']} AND username='{$_SESSION['username']}'");
+		$res = $mysqli->use_result();
+
+		echo '<form action="editCloset.php?pass=hello" method="post">';
+		echo "Please modify the tables below to adjust the items in your closet:...";
+		echo "<table border=1><tr><td>Name</td><td>Description</td><td>Submit</td></tr>";
+
+		while ($row = $res->fetch_assoc()) {
+    		echo "<tr><td><input type='text' name='name' value='{$row['name']}'>";
+    		echo "<input type='hidden' name='id' value='{$_GET['id']}'>";
+   			echo "<input type='hidden' name='action' value='update'></td>";
 	
 	
-	echo "<td><input type='text' name='description' value='{$row['description']}'>";
-    echo "<input type='hidden' name='id' value='{$_GET['id']}'>";
-    echo "<input type='hidden' name='action' value='update'></td>";
+			echo "<td><input type='text' name='description' value='{$row['description']}'>";
+    		echo "<input type='hidden' name='id' value='{$_GET['id']}'>";
+    		echo "<input type='hidden' name='action' value='update'></td>";
     
-	echo "<td><input type=submit data-role='button' data-icon='plus'></td></tr>";
+			echo "<td><input type=submit data-role='button' data-icon='plus'></td></tr>";
 	
     
-}
-echo "</table>";
+		}
+	echo "</table>";
 	
 }
 

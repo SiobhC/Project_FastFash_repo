@@ -49,7 +49,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
   <div data-role="header" data-position ="fixed">
   		<a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left" data-transition = "flip">Home</a>
   		<a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
-    	<h1>Welcome to your Closet Profile!</h1>
+    	<h1>Closet Profile</h1>
   </div>
   
 <!--Navigation Bar ----------------------------------->
@@ -134,24 +134,37 @@ $res = $mysqli->use_result();
 
 
 		echo '<form action="ClosetTest.php" method="post">';
-
 		echo "The items currently in your closet are:...";
 		echo "<ul data-role='listview' data-filter='true' data-filter-placeholder='Search closet...' data-inset='true'>";
+		
 			while ($row = $res->fetch_assoc()) {
-					echo   "<li>
-        <a href='#'>
+			$image = $row['image'];
+			
+		if ($image != null){
+			
+		echo   "<li>
+        
         <img src='{$row['image']}' width='200' height='150'>
         <h2>{$row['name']}</h2>
         <p>{$row['description']}</p>
-        </a>
+        
+        </li> 
         <div data-role='controlgroup' data-type='horizontal' data-mini='true'>
     	<a rel='external' href='editCloset.php?pass=hello&action=edit&id={$row['id']}' data-transition='pop' data-role='button' data-icon='gear' data-theme='b'>Edit</a>
     	<a rel='external' href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-transition='pop' data-role='button' data-icon='delete' data-theme='b'>Delete</a>
     	<a rel='external' href='addNewCloset.php' data-role='button' data-transition='pop' data-icon='plus' data-theme='b'>Add</a>
 		</div>
-		</li>  ";  
+		 ";  
+		 }
+		 else{
+		    	echo "Please upload an image to your closet ";
+				echo "<a rel='external' href='addNewCloset.php' data-role='button' data-transition='pop' data-icon='plus' data-theme='b'>Add</a>";
 
-			}
+				}
+		}	
+
+			
+
 			
 	
 

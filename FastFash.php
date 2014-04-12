@@ -82,7 +82,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
   	
     <ul data-role="listview" data-inset="true"data-filter="true">
      	<li><a rel="external" href="trends.php?pass=hello"><i class="icon-doc" data-icon="arrow-r"></i> Trends</a></li>
-     	<li><a rel="external" href="ClosetTest.php?pass=hello"><i class="icon-doc" data-icon="arrow-r"></i> Closet Profile</a></li>
+     	<li><a rel="external" href="Closet.php?pass=hello"><i class="icon-doc" data-icon="arrow-r"></i> Closet Profile</a></li>
       	<li><a href="#Outfit"><i class="icon-phone" data-icon="arrow-r"></i> Outfit of the Day</a></li>
     </ul>
     	

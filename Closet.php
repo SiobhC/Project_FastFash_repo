@@ -141,11 +141,13 @@ $res = $mysqli->use_result();
 				
 /* user already has  a profile and can now view their items*/				
 		
-		echo '<form action="editCloset.php" method="post">';
+		echo '<form action="Closet.php" method="post">';
 		echo "The items currently in your closet are:...";
 		echo "<table border=0><tr><td>Name</td><td>Image</td><td>Description</td><td>Delete</td><td>Edit</td><td>Add</td></tr>";
 			while ($row = $res->fetch_assoc()) {
-    			echo "<tr><td>{$row['name']}</td>";
+			
+			
+				echo "<tr><td>{$row['name']}</td>";
     			echo "<td><img class='thumbnail' src={$row['image']} width='200' height='150' /></td>" ;
     			echo "<td>{$row['description']}</td>" ;
 				echo "<td><a rel='external' href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-role='button' data-icon='delete'>Delete</a></td>";
@@ -153,9 +155,13 @@ $res = $mysqli->use_result();
   				echo "<td><a rel='external' href='addNewCloset.php' data-role='button' data-icon='plus' data-theme='b'>Add</a></td></tr>";
     
 				}
+				
+				
 		echo "</table>";
+			
+				
 
-		
+			
 
 /* close connection to database*/
 

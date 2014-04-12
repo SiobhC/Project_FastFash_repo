@@ -94,9 +94,9 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 <!-- Allow user to input items into profile --> 
 
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
-    <a rel="external" href='editCloset.php?pass=hello&action=edit&id={$row['id']}' data-role="button" data-icon="plus" data-theme="b">Add</a>
-    <a href="#" href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-role="button" data-icon="delete" data-theme="b">Delete</a>
-    <a href="#" href="addNewCloset.php" data-role="button" data-icon="grid" data-theme="b">Edit</a>
+    <a rel="external" href='addNewCloset.php' data-role="button" data-icon="plus" data-theme="b">Add</a>
+    <a href="external" href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-role="button" data-icon="delete" data-theme="b">Delete</a>
+    <a href="external" href="editCloset.php?pass=hello&action=edit&id={$row['id']}' " data-role="button" data-icon="grid" data-theme="b">Edit</a>
 </div>
 
 
@@ -135,26 +135,12 @@ if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-$mysqli->real_query("SELECT id, pass, username,name,image,description FROM closet WHERE username='{$_SESSION['username']}'");
+$mysqli->real_query("SELECT id,pass, username,name,image,description FROM closet WHERE username='{$_SESSION['username']}'");
 $res = $mysqli->use_result();
-$row = $res->fetch_assoc();
-$image = "{$row['image']}";
 
-/*Check if there is already an image uploaded by the current user, if not send them a message to upload images to their profile*/
-	if ($image == null) {
-   				 echo "There are currently no items in your closet, please upload some images";
-   				 echo '<form action="editCloset.php" method="post">';
-				 echo "Add items to your closet:...";
-				 echo "<table border=0><tr><td></td></tr>";
-					while ($row = $res->fetch_assoc()) {
-    					echo "<td><a rel='external' href='addNewCloset.php' data-role='button' data-icon='plus' data-theme='b'>Add</a></td></tr>";
-    					}
-				echo "</table>";
-
-				}
 				
-/*Else the user already has  a profile and can now view their items*/				
-		else{
+/* user already has  a profile and can now view their items*/				
+		
 		echo '<form action="editCloset.php" method="post">';
 		echo "The items currently in your closet are:...";
 		echo "<table border=0><tr><td>Name</td><td>Image</td><td>Description</td><td>Delete</td><td>Edit</td><td>Add</td></tr>";
@@ -169,7 +155,7 @@ $image = "{$row['image']}";
 				}
 		echo "</table>";
 
-		}
+		
 
 /* close connection to database*/
 

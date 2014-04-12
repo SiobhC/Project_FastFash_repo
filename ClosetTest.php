@@ -43,73 +43,50 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 </head>
 
 
-
-<script>
-var password = "<? echo $_GET['pass'];  ?>";
-	function updateStock(id){
-		var txtbox = document.getElementById("description" + pk);
-	var url = "editCloset.php?pass="+password+"&action=update&id="+id+"&description="+txtbox.value;
-	window.location= url;
-	}
-	
-	function deleteStock(id){
-		var url="editCloset.php?pass="+password+"&action=delete+&id="+id;
-		window.location=url;
-	}	
-
-
-</script>
-
 <body>
 <!--Closet Profile --------------------------------- -->
-
 <div data-role="page" id="Closet">
   <div data-role="header" data-position ="fixed">
-  <a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left"
-  		data-transition = "flip">Home</a>
-  <a href="#" class="ui-btn ui-btn-icon-left ui-icon-search ui-corner-all ui-shadow">Search</a>
-    <h1>Welcome to your Closet Profile!</h1>
+  		<a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left" data-transition = "flip">Home</a>
+  		<a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
+    	<h1>Welcome to your Closet Profile!</h1>
   </div>
   
-    <!--Navigation Bar ----------------------------------->
-    <div data-role="navbar">
+<!--Navigation Bar ----------------------------------->
+<div data-role="navbar">
     	<ul>
     		<li><a rel="external" href="trends.php?pass=hello">Trends</a>
     		<li><a rel="external" href="FastFash.php#Outfit">Outfit of the Day</a>
     	</ul>
-    </div>
+</div>
     
-    <!--Closet profile content -----------------------------------> 
+<!--Closet profile content -----------------------------------> 
   <div data-role="content" >
-  <div data-role="collapsible">
+  	<div data-role="collapsible">
       <h1>Shoes!</h1>
-      	<p>
-      This is page four and should contain all the clothes owned by the user</p>
+      <p>This is page four and should contain all the clothes owned by the user</p>
       		<div data-role="collapsible">
       		<h4>Heels</h4>
     			<ul data-role="listview" data-filter="true" data-filter-placeholder="Search closet..." data-inset="true">
     				<li><a href="#">Green</a></li>
     				<li><a href="#">Black</a></li>
-    				
-				</ul>   	
-	
-      		</div>
+    			</ul>   	
+			</div>
     	<div data-role="collapsible">
       		<h1>Pumps</h1>
-      	 	
-      		<p>This should contain a image and description of users pumps </p>
+      	 	<p>This should contain a image and description of users pumps </p>
       	</div>
    </div>
    
 
    
     <ul data-role="listview" data-filter="true" data-filter-placeholder="Search closet..." data-inset="true">
-    <li><a href="#">Shoes</a></li>
-    <li><a href="#">Tops</a></li>
-    <li><a href="#">Jeans</a></li>
-    <li><a href="#">Accessories</a></li>
-    <li><a href="#">Dresses</a></li>
-    <li><a href="#">Coats/Jackets</a></li>
+    	<li><a href="#">Shoes</a></li>
+    	<li><a href="#">Tops</a></li>
+    	<li><a href="#">Jeans</a></li>
+    	<li><a href="#">Accessories</a></li>
+    	<li><a href="#">Dresses</a></li>
+    	<li><a href="#">Coats/Jackets</a></li>
 	</ul>   	
 	
   	
@@ -124,15 +101,6 @@ var password = "<? echo $_GET['pass'];  ?>";
 
 <?php 
  
-if ($_GET['pass'] != "hello")
-	{
-		 echo 'Invalid password.';
-   				 
-   	}
-   	
-else   				 
-{
-
 
 // Output: Password is valid!
 
@@ -145,8 +113,6 @@ if (mysqli_connect_errno()) {
 }
 
 
-
-
 /* Select queries return a resultset, selects customer first names */
 if ($result = mysqli_query($link, "SELECT messages FROM comments")) {
     printf("\nThere has been %d messages submitted. \n", mysqli_num_rows($result));
@@ -156,73 +122,59 @@ if ($result = mysqli_query($link, "SELECT messages FROM comments")) {
 }
 
 
-
-
 /* Selects the customers message from the database and prints to the screen */
 $mysqli = new mysqli("danu6.it.nuigalway.ie", "mydb1396cs", "da1sus", "mydb1396");
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-$mysqli->real_query("SELECT id, name,image,description FROM closet ORDER BY id ASC");
+$mysqli->real_query("SELECT id, pass, username,name,image,description FROM closet WHERE username='{$_SESSION['username']}'");
 $res = $mysqli->use_result();
 
 
 
-echo '<form action="ClosetTest.php" method="post">';
+		echo '<form action="ClosetTest.php" method="post">';
 
-echo "The items currently in your closet are:...";
+		echo "The items currently in your closet are:...";
+		echo "<ul data-role='listview' data-filter='true' data-filter-placeholder='Search closet...' data-inset='true'>";
+			while ($row = $res->fetch_assoc()) {
+					echo   "<li>
+        <a href='#'>
+        <img src='{$row['image']}' width='200' height='150'>
+        <h2>{$row['name']}</h2>
+        <p>{$row['description']}</p>
+        </a>
+        <div data-role='controlgroup' data-type='horizontal' data-mini='true'>
+    	<a rel='external' href='editCloset.php?pass=hello&action=edit&id={$row['id']}' data-transition='pop' data-role='button' data-icon='gear' data-theme='b'>Edit</a>
+    	<a rel='external' href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-transition='pop' data-role='button' data-icon='delete' data-theme='b'>Delete</a>
+    	<a rel='external' href='addNewCloset.php' data-role='button' data-transition='pop' data-icon='plus' data-theme='b'>Add</a>
+		</div>
+		</li>  ";  
 
-
-echo "<ul data-role='listview' data-filter='true' data-filter-placeholder='Search closet...' data-inset='true'>";
-while ($row = $res->fetch_assoc()) {
+			}
+			
 	
-echo '<li><h3>'.$row['name'].'</h3><p><strong>'.$row['description'].'</strong></p></li>';    
 
-}
-
-
-
-	echo
-	"
-    <li><a href='#'>{$row['name']}</a></li>
-    <li><a href='#'><img class='thumbnail' src={$row['image']} width='200' height='150' /></a></li>
-    <li><a href='#'>{$row['description']}</a></li>
-    <li><a href='#'><a rel='external' href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-role='button' data-icon='delete'>Delete</a></li>
-    <li><a href='#'><a rel='external' href='editCloset.php?pass=hello&action=edit&id={$row['id']}' data-role='button' data-icon='plus'>Edit</a></li>
-    <li><a href='#'><a rel='external' href='addNewCloset.php' data-role='button' data-icon='plus' data-theme='b'>Add</a></li>
-	</ul>   ";
 
 /* close connection */
 
 mysqli_close($link);
 
 
-
-
-}
-
 ?>
+
+ <!--Footer -----------------------------------> 
+<div data-role="footer" data-position ="fixed">
+   <a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
+</div>
+  
+<!-- --------------------------------- -->
 <!-- end content --> 
 
 </div> 
 
-
 <!-- end page --> 
 </div>
-
- <!--Footer -----------------------------------> 
-  <div data-role="footer" data-position ="fixed">
-   <a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
-    <a href="#" data-role="button" data-icon="plus">Add Me On Twitter</a>
-    <a href="#" data-role="button" data-icon="plus">Add Me On Instagram</a>
-    <h1>Contact us</h1>
-  </div>
-  
-      
-
-<!-- --------------------------------- -->
-
 
 </body>
 </html>

@@ -1,3 +1,14 @@
+<?PHP
+
+session_start();
+
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+
+	header ("Location: http://danu6.it.nuigalway.ie/siobhancollins/login.php");
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,62 +45,50 @@
 
 <div data-role="page" id="Closet">
   <div data-role="header" data-position ="fixed">
-  <a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left"
-  		data-transition = "flip">Home</a>
-  <a href="#" class="ui-btn ui-btn-icon-left ui-icon-search ui-corner-all ui-shadow">Search</a>
+  	<a rel="external" href="FastFash.php" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left" data-transition = "flip">Home</a>
+  	<a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
     <h1>Welcome to your Closet Profile!</h1>
   </div>
   
-    <!--Navigation Bar ----------------------------------->
-    <div data-role="navbar">
+<!--Navigation Bar ----------------------------------->
+<div data-role="navbar">
     	<ul>
     		<li><a rel="external" href="trends.php?pass=hello">Trends</a>
     		<li><a rel="external" href="FastFash.php#Outfit">Outfit of the Day</a>
     	</ul>
-    </div>
+</div>
     
     <!--Closet profile content -----------------------------------> 
-  <div data-role="content" >
+<div data-role="content" >
 
 <?php 
 
 /* Selects the customers message from the database and prints to the screen */
+
+
 $mysqli = new mysqli("danu6.it.nuigalway.ie", "mydb1396cs", "da1sus", "mydb1396");
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
  
-if ($_GET['pass'] != "hello") 
-	{
-		 echo 'Invalid password.';
-   				 
-   	}
 
-else if (!(isset($_GET['id'])) &&  !(isset($_POST['id']))  ) 
-
-	{
-		 echo 'Invalid id.';
-   				 
-   	}
-   	else
-{
 if(isset($_POST['action'])){
 	if ($_POST['action']=="update") {
 		
-		$mysqli->real_query("UPDATE closet SET name='{$_POST['name']}',name='{$_POST['name']}',description='{$_POST['description']}' WHERE id={$_POST['id']};");
-			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
+		$mysqli->real_query("UPDATE closet SET name='{$_POST['name']}',description='{$_POST['description']}' WHERE id={$_POST['id']};");
+			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/ClosetTest.php?pass=hello");
 }
 
 }
 else if($_GET['action']=="delete") {
 		
 		$mysqli->real_query("DELETE FROM closet WHERE id={$_GET['id']};");
-		header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
+		header("Location: http://danu6.it.nuigalway.ie/siobhancollins/ClosetTest.php?pass=hello");
 		
 	
 }else if($_GET['action']=="edit") {
 		
-		$mysqli->real_query("SELECT * FROM closet where id={$_GET['id']};");
+		$mysqli->real_query("SELECT * FROM closet WHERE username='{$_SESSION['username']}'");
 $res = $mysqli->use_result();
 echo '<form action="editCloset.php?pass=hello" method="post">';
 echo "Please modify the tables below to adjust the items in your closet:...";
@@ -103,6 +102,7 @@ while ($row = $res->fetch_assoc()) {
 	echo "<td><input type='text' name='description' value='{$row['description']}'>";
     echo "<input type='hidden' name='id' value='{$_GET['id']}'>";
     echo "<input type='hidden' name='action' value='update'></td>";
+    
 	echo "<td><input type=submit data-role='button' data-icon='plus'></td></tr>";
 	
     
@@ -113,38 +113,20 @@ echo "</table>";
 
 
 
-
-
-
-
-
-/* close connection */
-
-//mysqli_close($link);
-
-
-
-
-}
-
 ?>
+
+<!--Footer -----------------------------------> 
+<div data-role="footer" data-position ="fixed">
+   <a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
+</div>
+  
 <!-- end content --> 
 
 </div> 
 
-
 <!-- end page --> 
-</div>
-
-<!--Footer -----------------------------------> 
-  <div data-role="footer" data-position ="fixed">
-   <a href="https://www.facebook.com/siobhan.collins.777" data-role="button" data-icon="plus">Add Me On Facebook</a>
-    <a href="#" data-role="button" data-icon="plus">Add Me On Twitter</a>
-    <a href="#" data-role="button" data-icon="plus">Add Me On Instagram</a>
-    <h1>Contact us</h1>
-  </div>
-  
-      
+</div>      
 
 </body>
 </html>
+

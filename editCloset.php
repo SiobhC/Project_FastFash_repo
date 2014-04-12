@@ -76,14 +76,14 @@ if(isset($_POST['action'])){
 	if ($_POST['action']=="update") {
 		
 		$mysqli->real_query("UPDATE closet SET name='{$_POST['name']}',name='{$_POST['name']}',description='{$_POST['description']}' WHERE id={$_POST['id']};");
-			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
+			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/ClosetTest.php?pass=hello");
 }
 
 }
 else if($_GET['action']=="delete") {
 		
 		$mysqli->real_query("DELETE FROM closet WHERE id={$_GET['id']};");
-		header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
+		header("Location: http://danu6.it.nuigalway.ie/siobhancollins/ClosetTest.php?pass=hello");
 		
 	
 }else if($_GET['action']=="edit") {

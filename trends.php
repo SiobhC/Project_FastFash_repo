@@ -100,16 +100,6 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 	<div data-role="content">
 	
 
-		<div class="jcarousel">	
-    	<ul>
-        	<li><img id ="prada" src="prada.jpg" width="150" height="150" /><h3> New Prada heels</h3></li>
-        	<li><img id ="kurt_geiger" src="kurt_geiger.jpg" width="150" height="150" /><h3>Kurt Geiger latest offerings</h3></li>
-        	<li><img id ="hunter" src="hunter.jpg" width="150" height="150" /><h3> Hunter wellies!</h3></li>
-   		 </ul>
-		</div>
-		<p>This is page two and should contain all the information about trends</p>
-    </div>
-    
    <!--Thumbnail List view -----------------------------------> 
     <h4>Thumbnail List View</h4>
 

@@ -62,33 +62,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
     
 <!--Closet profile content -----------------------------------> 
   <div data-role="content" >
-  	<div data-role="collapsible">
-      <h1>Shoes!</h1>
-      <p>This is page four and should contain all the clothes owned by the user</p>
-      		<div data-role="collapsible">
-      		<h4>Heels</h4>
-    			<ul data-role="listview" data-filter="true" data-filter-placeholder="Search closet..." data-inset="true">
-    				<li><a href="#">Green</a></li>
-    				<li><a href="#">Black</a></li>
-    			</ul>   	
-			</div>
-    	<div data-role="collapsible">
-      		<h1>Pumps</h1>
-      	 	<p>This should contain a image and description of users pumps </p>
-      	</div>
-   </div>
-   
 
-   
-    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search closet..." data-inset="true">
-    	<li><a href="#">Shoes</a></li>
-    	<li><a href="#">Tops</a></li>
-    	<li><a href="#">Jeans</a></li>
-    	<li><a href="#">Accessories</a></li>
-    	<li><a href="#">Dresses</a></li>
-    	<li><a href="#">Coats/Jackets</a></li>
-	</ul>   	
-	
   	
 <!-- Allow user to input items into profile --> 
 

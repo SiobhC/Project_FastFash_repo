@@ -82,24 +82,10 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
   	
     <ul data-role="listview" data-inset="true"data-filter="true">
      	<li><a rel="external" href="trends.php?pass=hello"><i class="icon-doc" data-icon="arrow-r"></i> Trends</a></li>
-     	<li><a rel="external" href="Closet.php?pass=hello"><i class="icon-doc" data-icon="arrow-r"></i> Closet Profile</a></li>
+     	<li><a rel="external" href="ClosetTest.php?pass=hello"><i class="icon-doc" data-icon="arrow-r"></i> Closet Profile</a></li>
       	<li><a href="#Outfit"><i class="icon-phone" data-icon="arrow-r"></i> Outfit of the Day</a></li>
     </ul>
     	
-  
-  
-  <form>
-    <label for="textinput-s">Text Input:</label>
-    <input type="text" name="textinput-s" id="textinput-s" placeholder="Text input" value="" data-clear-btn="true">
-    <label for="select-native-s">Select:</label>
-    <select name="select-native-s" id="select-native-s">
-        <option value="small">One</option>
-        <option value="medium">Two</option>
-        <option value="large">Three</option>
-    </select>
-    <label for="slider-s">Input slider:</label>
-    <input type="range" name="slider-s" id="slider-s" value="25" min="0" max="100" data-highlight="true">
-</form>
 
 
 <div data-role="footer" data-position ="fixed">
@@ -248,7 +234,6 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 <div data-role="page" id="Outfit">
   <div data-role="header" data-position ="fixed">
   	<a href="#home" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left" data-transition = "flip">Home</a>
-  	<a href="#" class="ui-btn ui-icon-search ui-shadow ui-btn-icon-left ui-corner-all">Search</a>
     <h1>Outfit of the Day!</h1>
   </div>
   
@@ -264,21 +249,12 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 
   <!--Ouftit of the Day Content----------------------------------->
 	
- 	<a href="#" class="ui-btn ui-corner-all ui-icon-camera ui-btn-icon-left">Camera Icon</a>
+ 	
  	<div data-role="content"  data-position ="fixed">
-    	<p>This is page three and should contain all the information about outfit of the day</p>
+    	<p>Outfit of the day</p>
     	<p class="show-menu">Show/Hide Menu<p>
     
-    
 
-    
-    <label for="select-choice-1" class="select">Choose a Trending Item!:
-    </label>
-    		<select name="select-choice-1" id="select-choice-1">
-    			<option value="item1">Michelle Phan: Colour Explosion Party Makeup!</option>
-    			<option value="item2">Second Menu Item</option>
-    			<option value="item3">Third Menu Item</option>
-    		</select>	
 	 <!--youtube content----------------------------------->
     <div id="popupVideo" data-overlay-theme="a" data-theme="d" data-tolerance="15,15" class="ui-content">
 		<iframe src="http://www.youtube.com/embed/?v=QtKc_ZSGPOQ&list=UUuYx81nzzz4OFQrhbKDzTng" width="497" height="298" seamless></iframe>
@@ -306,42 +282,6 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 
 	
 	
-<!--Gallery-->	
-<div id="Gallery">
-		<div class="gallery-row">
-		<div class="gallery-item"><a href="prada.jpg"><img src="prada.jpg" alt="Image 01" /></a></div>
-		<div class="gallery-item"><a href="kurt_geiger.jpg"><img src="kurt_geiger.jpg" alt="Image 02" /></a></div>
-		<div class="gallery-item"><a href="hunter.jpg"><img src="hunter.jpg" alt="Image 03" /></a></div>
-	</div>
-	
-	<div class="gallery-row">
-		<div class="gallery-item"><a href="images/full/04.jpg"><img src="images/thumb/04.jpg" alt="Image 04" /></a></div>
-		<div class="gallery-item"><a href="images/full/05.jpg"><img src="images/thumb/05.jpg" alt="Image 05" /></a></div>
-		<div class="gallery-item"><a href="images/full/06.jpg"><img src="images/thumb/06.jpg" alt="Image 06" /></a></div>
-	</div>
-</div>	
-
-<!--Gallery-->	
-
-<div class ="ui-grid-a" id="Outfit">
-	<div class="ui-block-a">
-		<h1> Outfit of the Day</h1>
-		<p><strong>  Restaurant bar in the center of Strasbourg</strong></p>
-		<p> On the menu: </p>
-			<ul>
-				<li> Milkshake with chocolat</li>
-				<li> Planchettes </li>
-				<li> Leek pie </li>
-			</ul>
-	</div>
-	<div class="ui-block-b">
-		<p><img src="prada.jpg" alt="prada shoes"/></p>
-		<p><a href="http://www.google.ie" rel="external" data-role="button"> See our website</a></p>
-	</div>
-<!--End div grid a-->
-</div>	
-<hr />
- 
  <!-- Locations & links to stores -->
  <div class="ui-grid-a" id="Outfit">
 		<div class="ui-block-a">
@@ -349,9 +289,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 			<p>National University of Ireland</p>
 			<p>Galway	</p>
 		</div>
-		<div class="ui-block-b">
-			<img src="01_maps.jpg" alt="plan jeanette"/>
-		</div>
+		
 <!--End div grid a-->
 </div>
 
@@ -361,19 +299,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 			<a href="https://maps.google.ie/maps?ie=UTF-8&q=nui+galway&fb=1&gl=ie&hq=national+university+of+ireland+galway&cid=10034547999759139440&ei=QaUVU9fzOaiS7Qbd3ICYDg&ved=0CJ4BEPwS" data-role="button" data-icon="maps"> Find us on Google Maps </a>
 			<!--<a href="tel: "  data-role="button" data-icon="tel"> Call us </a>-->
 		</div>
-	<hr/>
- 
-	<div id="notation">
-	<form>
-	<label for="select-choice-0" class="select"><h2> User rating </h2></label>
-		<select name="note_utilisateur" id="note_utilisateur" data-native-menu="false" data-theme="c" >
-		   <option value="one" class="one"> Not good at all </option>
-		   <option value="two" class="two">Average </option>
-		   <option value="three" class="three">Pretty good </option>
-		   <option value="four" class="four"> Excellent </option>
-		</select>
-	</form>
-	</div>
+	
 	
 	
   <!--Footer ----------------------------------->
@@ -382,11 +308,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
     <a href ="page2.php" rel="external" data-role="button" data-icon="minus">Log out</a>
   </div>
 
-  <!--Submit form----------------------------------->
-<fieldset class="ui-grid-a">
-    <div class="ui-block-a"><button type="submit" data-theme="c">Cancel</button></div>
-    <div class="ui-block-b"><button type="submit" data-theme="b">Submit</button></div>
-</fieldset>
+
 <!-- end content --> 
 
 </div> 

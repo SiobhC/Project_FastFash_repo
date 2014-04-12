@@ -83,7 +83,7 @@ if (isset($_POST['name'])) {
 				$link->query($sql);
 
 			echo "<font color=red>New Image has been added!</font><P>";
-			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/Closet.php?pass=hello");
+			header("Location: http://danu6.it.nuigalway.ie/siobhancollins/ClosetTest.php?pass=hello");
 			}
 			
 				else {

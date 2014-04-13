@@ -58,3 +58,20 @@
 		<p>This is page two and should contain all the information about trends</p>
     </div>
     
+    
+
+ <!--Trends echo statements for listview -->   
+      echo   "<li>
+        <a href='{$row['url']}' target='blank'><img src='{$row['image']}' width='200' height='150'/></a>
+        <h2>{$row['name']}</h2>
+        <p>{$row['description']}</p>
+        <p>€{$row['price']}</p>
+        </li> 
+        </ul>
+
+   	<div data-role='controlgroup' data-type='horizontal' data-mini='true'>
+	<a rel='external' href='edittrends.php?pass=hello&action=delete&id={$row['id']}' data-role='button' data-icon='delete'>Delete</a>
+	<a rel='external' href='edittrends.php?pass=hello&action=edit&id={$row['id']}'data-role='button' data-icon='plus'>Edit</a>
+	<a rel='external' href='addNewtrend.php' data-role='button' data-icon='plus'>Add</a>
+	";
+    

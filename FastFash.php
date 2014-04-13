@@ -52,7 +52,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
   <div data-role="content">
   <div id ="branding">
   	<div id="wordmark"> </div>
-  	<h2 id="banner"><a href="http://cooltext.com"><img src="http://images.cooltext.com/3662447.png" width="250" height="78" alt="FastFash"/></a>
+  	<h2 id="banner"><a href="#"><img src="http://images.cooltext.com/3662447.png" width="250" height="78" alt="FastFash"/></a>
 	<br /></h2>
 	
 
@@ -241,7 +241,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
   	 <div data-role="navbar" data-theme="e">
       <ul>
         <li><a rel="external" href="trends.php?pass=hello">Trends</a></li>
-        <li><a rel="external" href="Closet.php?pass=hello">Closet Profile</a></li>
+        <li><a rel="external" href="ClosetTest.php?pass=hello">Closet Profile</a></li>
       </ul>
     </div>
     

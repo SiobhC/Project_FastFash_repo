@@ -133,16 +133,6 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 <?php 
 
 
-// Output: Password is valid!
-
-$link = mysqli_connect("danu6.it.nuigalway.ie", "mydb1396cs", "da1sus", "mydb1396");
-
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
-}
-
 
 
 /* Selects the customers message from the database and prints to the screen */
@@ -168,20 +158,25 @@ echo "<ul data-role='listview' data-inset='true'>
       		<p>{$row['description']}<p>
    		 	</a>
   		</li>
+
+	<div data-role='controlgroup' data-type='horizontal' data-mini='true'>
+	<a rel='external' href='edittrends.php?pass=hello&action=delete&id={$row['id']}' data-role='button' data-icon='delete'>Delete</a>
+	<a rel='external' href='edittrends.php?pass=hello&action=edit&id={$row['id']}'data-role='button' data-icon='plus'>Edit</a>
+	<a rel='external' href='addNewtrend.php' data-role='button' data-icon='plus'>Add</a>
 	</ul>";
 
 	}
 
 
 
-// close connection
+// close connection 
 
 mysqli_close($link);
 
 
 ?>
 
-	
+
 <!--Footer ----------------------------------->
   	<div data-role="footer" data-position ="fixed">
     	<h1>Contact us</h1>

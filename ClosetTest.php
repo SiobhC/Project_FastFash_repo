@@ -63,20 +63,9 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 <!--Closet profile content -----------------------------------> 
   <div data-role="content" >
 
-  	
-<!-- Allow user to input items into profile --> 
-
-<div data-role="controlgroup" data-type="horizontal" data-mini="true">
-    <a rel="external" href='editCloset.php?pass=hello&action=edit&id={$row['id']}' data-role="button" data-icon="plus" data-theme="b">Add</a>
-    <a href="#" href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-role="button" data-icon="delete" data-theme="b">Delete</a>
-    <a href="#" href="addNewCloset.php" data-role="button" data-icon="grid" data-theme="b">Edit</a>
-</div>
-
 
 <?php 
  
-
-// Output: Password is valid!
 
 $link = mysqli_connect("danu6.it.nuigalway.ie", "mydb1396cs", "da1sus", "mydb1396");
 
@@ -87,14 +76,6 @@ if (mysqli_connect_errno()) {
 }
 
 
-/* Select queries return a resultset, selects customer first names */
-if ($result = mysqli_query($link, "SELECT messages FROM comments")) {
-    printf("\nThere has been %d messages submitted. \n", mysqli_num_rows($result));
-
-  
-    mysqli_free_result($result);
-}
-
 
 /* Selects the customers message from the database and prints to the screen */
 $mysqli = new mysqli("danu6.it.nuigalway.ie", "mydb1396cs", "da1sus", "mydb1396");
@@ -102,40 +83,42 @@ if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
+//Query the 'closet' database and select  data matching the username for the session variable
 $mysqli->real_query("SELECT id, pass, username,name,image,description FROM closet WHERE username='{$_SESSION['username']}'");
 $res = $mysqli->use_result();
 
 
 
+
 		echo '<form action="ClosetTest.php" method="post">';
-		echo "The items currently in your closet are:...";
+		echo "<h4>The items currently in your closet:...</h4>";
 		echo "<ul data-role='listview' data-filter='true' data-filter-placeholder='Search closet...' data-inset='true'>";
 		
 			while ($row = $res->fetch_assoc()) {
 			$image = $row['image'];
 			
 		if ($image != null){
-			
+		  	
+		// Allow user to input items into profile 
+
 		echo   "<li>
         
-        <img src='{$row['image']}' width='200' height='150'>
+        <img src='{$row['image']}' width='200' height='150'/>
         <h2>{$row['name']}</h2>
-        <p>{$row['description']}</p>
-        
+        <p>{$row['description']}</p>  
         </li> 
         <div data-role='controlgroup' data-type='horizontal' data-mini='true'>
     	<a rel='external' href='editCloset.php?pass=hello&action=edit&id={$row['id']}' data-transition='pop' data-role='button' data-icon='gear' data-theme='b'>Edit</a>
     	<a rel='external' href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-transition='pop' data-role='button' data-icon='delete' data-theme='b'>Delete</a>
-    	<a rel='external' href='addNewCloset.php' data-role='button' data-transition='pop' data-icon='plus' data-theme='b'>Add</a>
 		</div>
 		 ";  
 		 }
 		 else{
-		    	echo "Please upload an image to your closet ";
-				echo "<a rel='external' href='addNewCloset.php' data-role='button' data-transition='pop' data-icon='plus' data-theme='b'>Add</a>";
+		    	echo "<h4>Please upload images to your closet</h4> ";
 
 				}
 		}	
+	    echo "<a rel='external' href='addNewCloset.php' data-role='button' data-transition='pop' data-icon='plus' data-theme='b'>Add</a>";
 
 			
 

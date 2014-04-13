@@ -285,9 +285,94 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
  <!-- Locations & links to stores -->
  <div class="ui-grid-a" id="Outfit">
 		<div class="ui-block-a">
-			<h2> Contact us</h2>
-			<p>National University of Ireland</p>
-			<p>Galway	</p>
+			<h2>Instyle Latest trends</h2>
+			<p>Sun 13th April 2014</p>
+		    <?php
+	//RSS (Really Simple Syndication), XML plain formatted text displaying regularly changing web content to user.
+	//RSS feed to show people important posts from revelent sites that contain trending items
+	//Creates a new DOMDocument() which is loaded into the sites feed i.e. WordPress.orgRSS feed
+	$rss = new DOMDocument();
+	
+	//This feed is chanageable to display the revelent sites posts
+	$rss->load('http://rss.instyle.com/web/instyle/rss/parties/thisjustin/index.xml');
+	$feed = array();
+	foreach ($rss->getElementsByTagName('item') as $node) {
+	
+	//Get id, title,description,link, date and place them into array
+		$item = array ( 
+			'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+			'desc' => $node->getElementsByTagName('description')->item(0)->nodeValue,
+			'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
+			//'date' => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
+			);
+	//array_push() treats array as a stack, and pushes the passed variables onto the end of array. 		
+		array_push($feed, $item);
+	}
+	//Display 5 posts, with titles linking to original post
+	$limit = 5;
+	//If the feed is empty return this error message
+	if ($feed == null) echo "does not compute";
+	else
+	//Retrieve the itmes from the array.
+	for($x=0;$x<$limit;$x++) {
+		$title = str_replace("&", "&amp;", $feed[$x]["title"]);
+		$link = $feed[$x]["link"];
+		$description = $feed[$x]['desc'];
+		//$date = date('l F d, Y', strtotime($feed[$x]['date']));
+		//echo '<p><strong><a href="'.$link.'" title="'.$title.'">'.$title.'</a></strong><br />';
+		//echo '<small><em>Posted on '.$date.'</em></small></p>';
+		echo '<a href="'.$link.'" title="'.$title.'" rel="nofollow">'.$title.'</a>';
+		echo '<p>'.$description.'</p>';
+		
+	}
+	
+?>
+		</div>
+		
+	<div class="ui-block-b">
+	<h2>Style.com Latest News</h2>
+	<p>Sun 13th April 2014</p>
+    <?php
+	//RSS (Really Simple Syndication), XML plain formatted text displaying regularly changing web content to user.
+	//RSS feed to show people important posts from revelent sites that contain trending items
+	//Creates a new DOMDocument() which is loaded into the sites feed i.e. WordPress.orgRSS feed
+	$rss = new DOMDocument();
+	
+	//This feed is chanageable to display the revelent sites posts
+	$rss->load('http://www.style.com/homepage/rss');
+	$feed = array();
+	foreach ($rss->getElementsByTagName('item') as $node) {
+	
+	//Get id, title,description,link, date and place them into array
+		$item = array ( 
+			'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+			'desc' => $node->getElementsByTagName('description')->item(0)->nodeValue,
+			'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
+			//'date' => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
+			);
+	//array_push() treats array as a stack, and pushes the passed variables onto the end of array. 		
+		array_push($feed, $item);
+	}
+	//Display 5 posts, with titles linking to original post
+	$limit = 5;
+	//If the feed is empty return this error message
+	if ($feed == null) echo "does not compute";
+	else
+	//Retrieve the itmes from the array.
+	for($x=0;$x<$limit;$x++) {
+		$title = str_replace("&", "&amp;", $feed[$x]["title"]);
+		$link = $feed[$x]["link"];
+		$description = $feed[$x]['desc'];
+		//$date = date('l F d, Y', strtotime($feed[$x]['date']));
+		//echo '<p><strong><a href="'.$link.'" title="'.$title.'">'.$title.'</a></strong><br />';
+		//echo '<small><em>Posted on '.$date.'</em></small></p>';
+		echo '<a href="'.$link.'" title="'.$title.'" rel="nofollow">'.$title.'</a>';
+		echo '<p>'.$description.'</p>';
+		
+	}
+	
+?>
+
 		</div>
 		
 <!--End div grid a-->

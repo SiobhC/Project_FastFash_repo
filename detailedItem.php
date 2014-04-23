@@ -83,15 +83,18 @@ if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
+
+$id = $_GET['id'];
+
+
 //Query the 'closet' database and select  data matching the username for the session variable
-$mysqli->real_query("SELECT id, pass, username,name,image,description FROM closet WHERE username='{$_SESSION['username']}'");
+$mysqli->real_query("SELECT id, pass, username,name,image,description FROM closet WHERE username='{$_SESSION['username']}' AND id='{$id}'");
 $res = $mysqli->use_result();
 
 
 
-
 		echo '<form action="ClosetTest.php" method="post">';
-		echo "<h4>The items currently in your closet:...</h4>";
+		echo "<h4>The image in your closet:...</h4>";
 		echo "<ul data-role='listview' data-filter='true' data-filter-placeholder='Search closet...' data-inset='true'>";
 		
 			while ($row = $res->fetch_assoc()) {
@@ -101,28 +104,23 @@ $res = $mysqli->use_result();
 		  	
 		// Allow user to input items into profile 
 
-		echo   "<li>
+		echo   "
         
-        <a rel='external' href='detailedItem.php?pass=hello&id={$row['id']}'><img src='{$row['image']}' width='200' height='150'></a>
-      	<h3>{$row['name']}</h3>
+        <img src='{$row['image']}' max-width=100% height='300' seamless>
+        <h2>{$row['name']}</h2>
         <p>{$row['description']}</p>  
-        </li> 
+        
         <div data-role='controlgroup' data-type='horizontal' data-mini='true'>
     	<a rel='external' href='editCloset.php?pass=hello&action=edit&id={$row['id']}' data-transition='pop' data-role='button' data-icon='gear' data-theme='b'>Edit</a>
     	<a rel='external' href='editCloset.php?pass=hello&action=delete&id={$row['id']}' data-transition='pop' data-role='button' data-icon='delete' data-theme='b'>Delete</a>
-		</div>";
-	
-		 
+		</div>
+		 ";  
 		 }
-		
-		  
-
 		 else{
 		    	echo "<h4>Please upload images to your closet</h4> ";
 
 				}
 		}	
-	    echo "<a rel='external' href='addNewCloset.php' data-role='button' data-transition='pop' data-icon='plus' data-theme='b'>Add</a>";
 
 			
 

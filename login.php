@@ -45,8 +45,6 @@ if (mysqli_connect_errno()) {
  //if the name exists it gives an error
 
  if ($check2 != null) {
-		echo "logged on!";
- 		die('Sorry, the username '.$_POST['username'].' is already in use.');
 	
 		
 	// IF ALL OKAY SET SESSION
@@ -76,20 +74,14 @@ if (mysqli_connect_errno()) {
 
 
 
- 
- <h1>Registered</h1>
 
- <p>Thank you, you have registered - you may now login</a>.</p>
- 
   <?php 
 
 }
  else 
  {	
- echo $_SERVER['REQUEST_METHOD'];
- }
+ 
  ?>
-
 
 
 <!DOCTYPE html>
@@ -101,17 +93,16 @@ if (mysqli_connect_errno()) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<link rel="stylesheet" href="jquery-mobile-theme-110927-0/themes/style_march.min.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-	
-
-
-
-
-	//NB you may have to change the location of this stylesheet to MAMP/test/jquery-mobile-.....
+	<!-- Link to external stylesheets and javescript files for app -->
+    <link rel="Stylesheet" href="jquery-mobile-theme-050108-0/themes/project.min.css" />
+ <!-- <link rel="Stylesheet" href="jquery-ui-1.10.4-2.custom/css/hot-sneaks/jquery-ui-1.10.4.custom.min.css" /> -->
 
     
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+	
     <script type="text/javascript" src="/path/to/jquery.js"></script>
 	<script type="text/javascript" src="/Applications/MAMP/htdoc/test/jquery.jcarousel.js"></script>
 </head>
@@ -127,15 +118,12 @@ if (mysqli_connect_errno()) {
 
 </div>
 <!-- header header -->
-		
-<a href="#home" data-icon="home" data-iconpos="left" data-direction="reverse" class="ui-btn-left"
-  		data-transition = "flip">Home</a>	
-	
+
 	<div data-role="content">
 	
 	
 	
-	<form id ="check-user" class="ui-body ui-body-a ui-corner-all" method="post" data-ajax='false' action="login.php">
+	<form id ="check-user" class="ui-body ui-body-a ui-corner-all" method="POST" data-ajax='false' action="login.php">
 		<fieldset>
 			<div data-role ="fieldcontain">
 			<h2>Login Information</h2>
@@ -151,7 +139,7 @@ if (mysqli_connect_errno()) {
 			
 			<label for="log">Keep me logged in</label><br />
 			<input type="checkbox" name="login" id="log" value="1" data-mini="true"/><br>
-			<input type="submit" name="submit" id ="submit" value="Submit" data-theme="b" data-icon="check" data-iconpos="right" data-inline="true">
+			<input type="submit" name="submit" id ="submit" value="submit" data-theme="b" data-icon="check" data-iconpos="right" data-inline="true">
 		
 		
 		</fieldset>	
@@ -167,3 +155,4 @@ if (mysqli_connect_errno()) {
 	
 </body>
 </html>
+}
